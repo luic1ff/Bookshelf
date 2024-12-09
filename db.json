@@ -1,0 +1,25 @@
+{
+  "cards": [
+    {
+      "id": "3768",
+      "title": "11",
+      "description": "11",
+      "image": "https://static.yakaboo.ua/media/catalog/product/9/7/9781844743704_0.jpg",
+      "rating": 1
+    },
+    {
+      "id": "2074",
+      "title": "12312312",
+      "description": "3123123",
+      "image": "https://balka-book.com/files/2024/04_10/03_59/u_files_store_18_81.jpg",
+      "rating": 5
+    },
+    {
+      "id": "7cdc",
+      "title": "123123",
+      "description": "123123",
+      "image": "https://balka-book.com/files/2024/04_10/03_59/u_files_store_18_81.jpg",
+      "rating": 2
+    }
+  ]
+}

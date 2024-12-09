@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply overflow-x-hidden bg-[#dce0e8] dark:bg-[#1e2030] dark:text-white;
+}
+
+            /*Fonts*/
+
+.font-poppins {
+    font-family: "Poppins", serif;
+}
+
+.font-lily {
+    font-family: "Lily Script One", serif;
+}
+
+
+            /*Buttons*/
+
+.btn_reg {
+    @apply px-3 py-2 bg-[#7287fd] hover:-translate-y-1 transition duration-300 text-white rounded-md ;
+}
