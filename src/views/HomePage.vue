@@ -1,33 +1,48 @@
 <template>
-  <div class="p-6 max-w-6xl  mx-auto">
-    <div class="mb-8 text-right">
+  <div class="p-6 max-w-6xl mx-auto">
+    <div class="flex justify-center md:justify-end space-x-6 mb-8 text-right">
+      <div class="relative">
+        <input
+            v-model="searchQuery"
+            type="text"
+            class="w-56 dark:bg-[#212124] border dark:border-none dark:text-white outline-none  rounded-md py-2 pl-10 pr-4"
+            placeholder="Search books...">
+        <i class="ri-search-line absolute left-3 top-2 "></i>
+
+      </div>
       <button class="btn_reg">
-        <router-link
-            to="/create"
-            class=""
-        >
-          Добавить карточку
-        </router-link>
+        <router-link to="/create">New Book</router-link>
       </button>
     </div>
 
+    <div class="text-5xl font-bold bg-gradient-to-br from-[#7287fd] to-[#314AD5] text-transparent bg-clip-text mb-20">
+      <h1>List of books</h1>
+    </div>
 
+    <div v-if="isLoading" class="text-center">
+      <p>Загрузка...</p>
+    </div>
 
-    <div v-if="cards.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div v-auto-animate="{ duration: 300 }" v-else-if="cards.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
       <div
-          v-for="card in cards"
+          v-for="card in filteredTasks"
           :key="card.id"
-          class="dark:bg-[#24273a] dark:border-gray-800 bg-[#eff1f5] border border-gray-200  rounded-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl p-4 cursor-pointer"
+          class="relative dark:bg-[#212124]  bg-gray-100 rounded-lg transition duration-300 hover:shadow-xl hover:scale-[103%] p-5 cursor-pointer"
       >
-        <img
-            :src="card.image"
-            alt="Изображение карточки"
-            class="w-full h-60 object-cover rounded-md mb-4"
-        />
-        <h3 class="text-lg font-semibold mb-2">{{ card.title }}</h3>
+        <div class="absolute -top-3 -right-3 size-16 bg-gray-200 dark:bg-[#2a2a2d] font-semibold rounded-full grid place-items-center">
+          <span>{{card.year}}</span>
+        </div>
+        <router-link
+            :to="{ name: 'BookDetails', params: { id: card.id } }">
+          <img
+              :src="card.image"
+              alt="Изображение карточки"
+              class="w-full h-60 object-cover rounded-md mb-4">
+        </router-link>
+        <h3 class="text-lg text-center font-bold mb-2">{{ card.title }}</h3>
+        <p class="text-gray-700 dark:text-gray-500 mb-2">{{card.author}}</p>
         <p class="text-gray-700 dark:text-gray-500 mb-2">{{ card.description }}</p>
-        <div class="flex items-center justify-center space-x-1 mb-2">
-          <!-- Звезды -->
+        <div class="flex items-center justify-center space-x-1 mb-4">
           <i
               v-for="star in 5"
               :key="star"
@@ -35,25 +50,25 @@
               class="text-xl"
           ></i>
         </div>
-        <div class="flex flex-col space-y-2 ">
+        <div class="flex space-x-2">
           <button
-              @click="deleteCard(card.id)"
-              class="bg-[#d20f39] text-white py-1 px-3 rounded-md hover:bg-opacity-70 transition w-full"
+              @click.stop="deleteCard(card.id)"
+              class="hover:bg-gradient-to-br from-[#d20f39] to-red-500 dark:bg-[#2a2a2d] bg-[#d20f39] text-white size-12 py-1 px-3 rounded-md  transition duration-300 w-full"
           >
             <i class="ri-close-large-line"></i>
           </button>
-
           <router-link
               :to="{ name: 'EditCard', params: { id: card.id } }"
-              class="bg-[#40a02b] text-white py-1 px-3 rounded-md hover:bg-opacity-70 transition w-full flex items-center justify-center"
+              @click.stop
+              class="hover:bg-gradient-to-br from-[#4CF191] to-[#09D45E] dark:bg-[#2a2a2d] bg-[#09D45E] text-white size-12 py-1 px-3 rounded-md transition duration-300 w-full flex items-center justify-center"
           >
             <i class="ri-edit-line"></i>
           </router-link>
         </div>
       </div>
-
     </div>
-    <div v-else class="flex flex-col justify-center items-center" >
+
+    <div v-else class="flex flex-col justify-center items-center">
       <h1 class="font-semibold text-2xl mt-24 h-full w-full text-center">Нет карточек для отображения</h1>
       <i class="ri-emotion-sad-line text-8xl mt-4 text-green-400"></i>
     </div>
@@ -61,35 +76,42 @@
 </template>
 
 <script>
-import axios from "axios";
+import { useCardsStore } from "@/stores/cardsStore";
+import { onMounted, computed } from "vue";
 
 export default {
-  data() {
+
+  data(){
     return {
-      cards: [],
+      searchQuery: "",
+
+    }
+  },
+  setup() {
+    const cardsStore = useCardsStore();
+    const {fetchCards, deleteCard} = cardsStore;
+    const cards = computed(() => cardsStore.cards);
+    const isLoading = computed(() => cardsStore.isLoading);
+
+    onMounted(() => {
+      fetchCards();
+    });
+
+    return {
+      cards,
+      isLoading,
+      deleteCard,
     };
   },
-  methods: {
-    async fetchCards() {
-      try {
-        const response = await axios.get("http://localhost:3000/cards");
-        this.cards = response.data;
-      } catch (error) {
-        console.error("Ошибка при загрузке карточек:", error);
-      }
+  computed: {
+    filteredTasks() {
+      const query = this.searchQuery.toLowerCase();
+      return this.cards.filter((task) =>
+          ['title', 'author', 'year'].some(key =>
+              task[key]?.toString().toLowerCase().includes(query)
+          )
+      );
     },
-    async deleteCard(id) {
-      try {
-        await axios.delete(`http://localhost:3000/cards/${id}`);
-        this.cards = this.cards.filter((card) => card.id !== id);
-      } catch (error) {
-        console.error("Ошибка при удалении карточки:", error);
-      }
-    },
-  },
-  mounted() {
-    this.fetchCards();
-  },
+  }
 };
 </script>
-

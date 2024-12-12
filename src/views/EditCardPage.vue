@@ -5,19 +5,19 @@
       <input
           v-model="card.title"
           placeholder="Название карточки"
-          class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          class="w-full border border-gray-300 rounded-md p-2 focus:outline-none dark:bg-gray-700 focus:ring-2 focus:ring-blue-400"
           required
       />
       <input
           v-model="card.description"
           placeholder="Описание карточки"
-          class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          class="w-full border border-gray-300 rounded-md p-2 focus:outline-none dark:bg-gray-700 focus:ring-2 focus:ring-blue-400"
           required
       />
       <input
           v-model="card.image"
           placeholder="URL изображения"
-          class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          class="w-full border border-gray-300 rounded-md p-2 focus:outline-none dark:bg-gray-700 focus:ring-2 focus:ring-blue-400"
           required
       />
       <div class="mb-4">

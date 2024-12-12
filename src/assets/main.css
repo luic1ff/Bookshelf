@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 body {
-    @apply overflow-x-hidden bg-[#dce0e8] dark:bg-[#1e2030] dark:text-white;
+    @apply overflow-x-hidden bg-white dark:bg-[#1a1a1d] dark:text-white font-inter;
 }
 
-            /*Fonts*/
 
-.font-poppins {
-    font-family: "Poppins", serif;
+.font-inter {
+    font-family: "Inter", sans-serif;
 }
 
 .font-lily {
     font-family: "Lily Script One", serif;
 }
 
-
-            /*Buttons*/
-
 .btn_reg {
-    @apply px-3 py-2 bg-[#7287fd] hover:-translate-y-1 transition duration-300 text-white rounded-md ;
+    @apply px-3 py-2 bg-gradient-to-br from-[#7287fd] to-[#314AD5] font-semibold hover:-translate-y-1 transition duration-300 text-white rounded-md ;
+}
+
+.btn_out {
+    @apply px-3 py-2 bg-gradient-to-br from-[#d20f39] to-red-500 font-semibold hover:-translate-y-1 transition duration-300 text-white rounded-md ;
 }

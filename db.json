@@ -1,25 +1,72 @@
 {
   "cards": [
     {
-      "id": "3768",
-      "title": "11",
-      "description": "11",
-      "image": "https://static.yakaboo.ua/media/catalog/product/9/7/9781844743704_0.jpg",
-      "rating": 1
+      "id": "121b",
+      "title": "Book 1",
+      "author": "Author 1",
+      "year": "2021",
+      "description": "Description of Book 1.",
+      "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
+      "rating": 4
     },
     {
-      "id": "2074",
-      "title": "12312312",
-      "description": "3123123",
-      "image": "https://balka-book.com/files/2024/04_10/03_59/u_files_store_18_81.jpg",
-      "rating": 5
+      "id": "12mj",
+      "title": "Book 3",
+      "author": "Author 3",
+      "year": "2019",
+      "description": "Description of Book 3.",
+      "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
+      "rating": 3
     },
     {
-      "id": "7cdc",
-      "title": "123123",
-      "description": "123123",
-      "image": "https://balka-book.com/files/2024/04_10/03_59/u_files_store_18_81.jpg",
-      "rating": 2
+      "id": "1hjb",
+      "title": "Book 3",
+      "author": "Author 3",
+      "year": "2019",
+      "description": "Description of Book 3.",
+      "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
+      "rating": 3
+    },
+    {
+      "id": "1232",
+      "title": "Book 3",
+      "author": "Author 3",
+      "year": "2019",
+      "description": "Description of Book 3.",
+      "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
+      "rating": 3
+    }
+  ],
+  "users": [
+    {
+      "id": "9a10",
+      "name": "@@@",
+      "email": "test@example.com",
+      "password": "@@@@@"
+    },
+    {
+      "id": "ae36",
+      "name": "\"",
+      "email": "test3@example.com",
+      "password": "\""
+    },
+    {
+      "id": "ff47",
+      "name": "\"carts:{}",
+      "email": "tes2t@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "a270",
+      "name": "Dmytro",
+      "email": "test1@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "838d",
+      "name": "Filya",
+      "email": "test5@example.com",
+      "password": "123456"
     }
   ]
 }

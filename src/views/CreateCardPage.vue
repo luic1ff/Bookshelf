@@ -9,6 +9,18 @@
           required
       />
       <input
+          v-model="newCard.author"
+          placeholder="Автор"
+          class="w-full border border-gray-300 rounded-md p-2 focus:outline-none dark:bg-gray-700 focus:ring-2 focus:ring-blue-400"
+          required
+      />
+      <input
+          v-model="newCard.year"
+          placeholder="Год выпуска"
+          class="w-full border border-gray-300 rounded-md p-2 focus:outline-none dark:bg-gray-700 focus:ring-2 focus:ring-blue-400"
+          required
+      />
+      <input
           v-model="newCard.description"
           placeholder="Описание карточки"
           class="w-full border border-gray-300 rounded-md p-2 focus:outline-none dark:bg-gray-700 focus:ring-2 focus:ring-blue-400"
@@ -52,6 +64,8 @@ export default {
     return {
       newCard: {
         title: "",
+        author: "",
+        year: "",
         description: "",
         image: "",
         rating: 0,
@@ -60,7 +74,7 @@ export default {
   },
   methods: {
     setRating(star) {
-      this.newCard.rating = star; // Устанавливаем рейтинг
+      this.newCard.rating = star;
     },
     async addCard() {
       try {
