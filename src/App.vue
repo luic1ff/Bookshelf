@@ -7,8 +7,14 @@
     <!--    Books    -->
 
     <RouterView/>
+    <!--    Footer    -->
 
     <Footer/>
+
+    <!--    Scroll-Up    -->
+
+    <ScrollUp/>
+
   </div>
 </template>
 
@@ -16,9 +22,10 @@
 import Header from '@/components/Layout/Header.vue'
 import Cards from "@/views/HomePage.vue";
 import Footer from "@/components/Layout/Footer.vue";
+import ScrollUp from "@/components/Layout/ScrollUp.vue";
 export default {
   components: {
-    Header, Cards , Footer,
+    Header, Cards , Footer, ScrollUp,
   }
 }
 </script>

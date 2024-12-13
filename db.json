@@ -10,31 +10,31 @@
       "rating": 4
     },
     {
-      "id": "12mj",
-      "title": "Book 3",
-      "author": "Author 3",
-      "year": "2019",
-      "description": "Description of Book 3.",
-      "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
-      "rating": 3
-    },
-    {
       "id": "1hjb",
-      "title": "Book 3",
-      "author": "Author 3",
-      "year": "2019",
-      "description": "Description of Book 3.",
+      "title": "Book 1",
+      "author": "Author 1",
+      "year": "2017",
+      "description": "Description of Book 1.",
+      "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
+      "rating": 4
+    },
+    {
+      "id": "2hjb",
+      "title": "Book 2",
+      "author": "Author 2",
+      "year": "2018",
+      "description": "Description of Book 2.",
       "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
       "rating": 3
     },
     {
-      "id": "1232",
-      "title": "Book 3",
-      "author": "Author 3",
-      "year": "2019",
-      "description": "Description of Book 3.",
+      "id": "5hjb",
+      "title": "Book 5",
+      "author": "Author 5",
+      "year": "2021",
+      "description": "Description of Book 5.",
       "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
-      "rating": 3
+      "rating": 5
     }
   ],
   "users": [
@@ -67,6 +67,24 @@
       "name": "Filya",
       "email": "test5@example.com",
       "password": "123456"
+    },
+    {
+      "id": "4a4d",
+      "name": "1212312",
+      "email": "3123132@gmail.com",
+      "password": "aoa-doasd"
+    },
+    {
+      "id": "0c0b",
+      "name": "123132123",
+      "email": "123123123@gmail",
+      "password": "231123123123"
+    },
+    {
+      "id": "ff95",
+      "name": "eqweq",
+      "email": "dimewe@gmail.com",
+      "password": "Dedqeqw"
     }
   ]
 }
