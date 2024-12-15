@@ -20,7 +20,7 @@
     },
     {
       "id": "2hjb",
-      "title": "Book 2",
+      "title": "Book 6",
       "author": "Author 2",
       "year": "2018",
       "description": "Description of Book 2.",
@@ -35,6 +35,15 @@
       "description": "Description of Book 5.",
       "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
       "rating": 5
+    },
+    {
+      "id": "cd43",
+      "title": "123123",
+      "author": "123123",
+      "year": "1232",
+      "description": "куцкукуццкук",
+      "image": "https://www.arfa.in.ua/image/cache/catalog/ARFA_T24_IMAGE/997/39204_59413-450x450.jpg",
+      "rating": 4
     }
   ],
   "users": [

@@ -26,7 +26,7 @@ export const useCardsStore = defineStore("cards", {
 
         async deleteCard(id) {
             try {
-                await axios.delete(`http://localhost:3000/cards/${id}`); // Исправлено на обратные кавычки
+                await axios.delete(`http://localhost:3000/cards/${id}`);
 
                 // Удаляем карточку из локального массива после успешного удаления
                 this.cards = this.cards.filter((card) => card.id !== id);
@@ -34,7 +34,6 @@ export const useCardsStore = defineStore("cards", {
                 console.error("Ошибка при удалении карточки:", error);
             }
         },
-
 
         async addCard(card) {
             try {
@@ -57,6 +56,14 @@ export const useCardsStore = defineStore("cards", {
             } finally {
                 this.isLoading = false;
             }
+        },
+
+        async isTitleUnique(title, excludeId = null) {
+            // Проверяем уникальность названия, исключая текущую карточку по ID
+            await this.fetchCards(); // Загружаем карточки, если их еще нет
+            return !this.cards.some(
+                (card) => card.title === title && card.id !== excludeId
+            );
         },
     },
 });
