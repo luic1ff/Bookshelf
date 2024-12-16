@@ -10,8 +10,8 @@
         <i class="ri-search-line absolute left-3 top-2 "></i>
 
       </div>
-      <button class="btn_reg">
-        <router-link to="/create">New Book</router-link>
+      <button class="btn_reg" @click="$router.push('/create')">
+        New Book
       </button>
     </div>
 

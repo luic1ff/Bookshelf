@@ -2,47 +2,87 @@
   <div class="p-6 max-w-4xl mx-auto">
     <h1 class="text-2xl font-bold mb-6">Редактировать карточку</h1>
     <Form @submit="updateCard" class="space-y-6">
-      <div>
-        <label class="block mb-1">Название карточки</label>
+      <!-- Название карточки -->
+      <div class="relative">
         <Field
             name="title"
             v-model="card.title"
             placeholder="Название карточки"
-            class="w-full border dark:bg-gray-700 dark:text-white rounded-md p-2"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
             :rules="titleRules"
         />
+        <i class="ri-book-2-line absolute left-3 top-2 "></i>
         <ErrorMessage name="title" class="text-red-500 text-sm" />
       </div>
 
-      <div>
-        <label class="block mb-1">Описание карточки</label>
+      <div class="relative">
+        <Field
+            name="author"
+            v-model="card.author"
+            placeholder="Имя автора"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
+            rules="required|min:3"
+        />
+        <i class="ri-user-line absolute left-3 top-2 "></i>
+        <ErrorMessage name="author" class="text-red-500 text-sm" />
+      </div>
+
+      <div class="relative">
+        <Field
+            name="year"
+            v-model="card.year"
+            placeholder="Год выпуска"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
+            rules="required|numeric|min_value:1000|max_value:9999"
+        />
+        <i class="ri-earth-line absolute left-3 top-2 "></i>
+        <ErrorMessage name="year" class="text-red-500 text-sm" />
+      </div>
+
+      <div class="relative">
         <Field
             name="description"
             v-model="card.description"
-            placeholder="Описание карточки"
-            class="w-full border dark:bg-gray-700 dark:text-white rounded-md p-2"
+            placeholder="Описание книги"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
             rules="required|min:10"
         />
+        <i class="ri-file-text-line absolute left-3 top-2 "></i>
         <ErrorMessage name="description" class="text-red-500 text-sm" />
       </div>
 
-      <div>
-        <label class="block mb-1">URL изображения</label>
+      <div class="relative">
         <Field
             name="image"
             v-model="card.image"
             placeholder="URL изображения"
-            class="w-full border dark:bg-gray-700 dark:text-white rounded-md p-2"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
             rules="required|url"
         />
+        <i class="ri-image-circle-line absolute left-3 top-2 "></i>
         <ErrorMessage name="image" class="text-red-500 text-sm" />
+      </div>
+
+      <!-- Рейтинг -->
+      <div class="mb-8">
+        <div class="flex space-x-2">
+          <button
+              v-for="star in 5"
+              :key="star"
+              type="button"
+              @click="card.rating = star"
+              class="text-2xl focus:outline-none"
+          >
+            <i :class="star <= card.rating ? 'ri-star-fill text-yellow-500' : 'ri-star-line text-gray-400'"></i>
+          </button>
+        </div>
       </div>
 
       <button
           type="submit"
-          class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
+          class="w-full text-center bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
       >
-        Сохранить изменения
+        Сохрани
       </button>
     </Form>
   </div>
@@ -50,9 +90,10 @@
 
 <script>
 import { Field, Form, ErrorMessage, defineRule, configure } from "vee-validate";
-import { required, min, url } from "@vee-validate/rules";
+import { required, min, url, numeric, min_value, max_value } from "@vee-validate/rules";
 import axios from "axios";
 import { useCardsStore } from "@/stores/cardsStore";
+import { ref } from 'vue'
 
 export default {
   components: {
@@ -67,6 +108,9 @@ export default {
         title: "",
         description: "",
         image: "",
+        author: "",
+        year: "",
+        rating: null,
       },
       originalTitle: "",
     };
@@ -84,8 +128,15 @@ export default {
   setup() {
     const cardsStore = useCardsStore();
 
+    const originalTitle = ref(""); // Создаем реактивное поле для оригинального названия
+
     const titleRules = async (value) => {
       if (!value) return "Поле обязательно.";
+
+      // Проверяем, если текущее значение совпадает с оригинальным названием
+      if (value === originalTitle.value) return true;
+
+      // Проверяем уникальность через store
       const isUnique = await cardsStore.isTitleUnique(value);
       if (!isUnique) {
         return "Название уже существует.";
@@ -93,9 +144,14 @@ export default {
       return true;
     };
 
+
+    // Определение правил для других полей
     defineRule("required", required);
     defineRule("min", min);
     defineRule("url", url);
+    defineRule("numeric", numeric);
+    defineRule("min_value", min_value);
+    defineRule("max_value", max_value);
 
     configure({
       validateOnInput: true,
@@ -104,12 +160,15 @@ export default {
           required: `Поле ${ctx.field} обязательно.`,
           min: `${ctx.field} должно содержать минимум ${ctx.rule.params[0]} символов.`,
           url: `${ctx.field} должно быть корректным URL.`,
+          numeric: `${ctx.field} должно быть числом.`,
+          min_value: `${ctx.field} должно быть не менее ${ctx.rule.params[0]}.`,
+          max_value: `${ctx.field} должно быть не более ${ctx.rule.params[0]}.`,
         };
         return messages[ctx.rule.name] || "Ошибка.";
       },
     });
 
-    return { titleRules };
+    return { titleRules, originalTitle };
   },
   methods: {
     async updateCard() {
@@ -124,4 +183,3 @@ export default {
   },
 };
 </script>
-

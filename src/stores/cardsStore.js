@@ -23,7 +23,6 @@ export const useCardsStore = defineStore("cards", {
                 this.isLoading = false;
             }
         },
-
         async deleteCard(id) {
             try {
                 await axios.delete(`http://localhost:3000/cards/${id}`);
@@ -58,12 +57,12 @@ export const useCardsStore = defineStore("cards", {
             }
         },
 
-        async isTitleUnique(title, excludeId = null) {
-            // Проверяем уникальность названия, исключая текущую карточку по ID
-            await this.fetchCards(); // Загружаем карточки, если их еще нет
-            return !this.cards.some(
-                (card) => card.title === title && card.id !== excludeId
-            );
-        },
+        isTitleUnique(title, excludeId = null) {
+            return this.cards.every((card) => {
+                // Проверяем уникальность названия, исключая текущую карточку
+                return card.title !== title || card.id === excludeId;
+            });
+        }
+
     },
 });

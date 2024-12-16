@@ -2,58 +2,63 @@
   <div class="p-6 max-w-4xl mx-auto">
     <h1 class="text-2xl font-bold mb-6">Добавить новую карточку</h1>
     <Form @submit="addCard" class="space-y-6 lg:space-y-4">
-      <div>
+      <div class="relative">
         <Field
             name="title"
             v-model="newCard.title"
             placeholder="Название карточки"
-            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 px-4"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
             :rules="titleRules"
         />
+        <i class="ri-book-2-line absolute left-3 top-2 "></i>
         <ErrorMessage name="title" class="text-red-500 text-sm" />
       </div>
 
-      <div>
+      <div class="relative">
         <Field
             name="author"
             v-model="newCard.author"
             placeholder="Имя автора"
-            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 px-4"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
             rules="required|min:3"
         />
+        <i class="ri-user-line absolute left-3 top-2 "></i>
         <ErrorMessage name="author" class="text-red-500 text-sm" />
       </div>
 
-      <div>
+      <div class="relative">
         <Field
             name="year"
             v-model="newCard.year"
             placeholder="Год выпуска"
-            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 px-4"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
             rules="required|numeric|min_value:1000|max_value:9999"
         />
+        <i class="ri-earth-line absolute left-3 top-2 "></i>
         <ErrorMessage name="year" class="text-red-500 text-sm" />
       </div>
 
-      <div>
+      <div class="relative">
         <Field
             name="description"
             v-model="newCard.description"
             placeholder="Описание книги"
-            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 px-4"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
             rules="required|min:10"
         />
+        <i class="ri-file-text-line absolute left-3 top-2 "></i>
         <ErrorMessage name="description" class="text-red-500 text-sm" />
       </div>
 
-      <div>
+      <div class="relative">
         <Field
             name="image"
             v-model="newCard.image"
             placeholder="URL изображения"
-            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 px-4"
+            class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
             rules="required|url"
         />
+        <i class="ri-image-circle-line absolute left-3 top-2 "></i>
         <ErrorMessage name="image" class="text-red-500 text-sm" />
       </div>
 

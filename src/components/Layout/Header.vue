@@ -39,7 +39,7 @@ export default {
         <ThemeToggle/>
       </div>
       <div>
-        <a href="https://github.com/luic1ff">
+        <a href="https://github.com/luic1ff/Bookshelf">
           <i class="ri-github-fill text-2xl hover:text-[#7287fd] duration-300"></i>
         </a>
       </div>

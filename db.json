@@ -11,21 +11,21 @@
     },
     {
       "id": "1hjb",
-      "title": "Book 1",
+      "title": "Book 23",
       "author": "Author 1",
       "year": "2017",
       "description": "Description of Book 1.",
       "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
-      "rating": 4
+      "rating": 5
     },
     {
       "id": "2hjb",
-      "title": "Book 6",
+      "title": "Book 69",
       "author": "Author 2",
       "year": "2018",
       "description": "Description of Book 2.",
       "image": "https://book-ye.com.ua/upload/resize_cache/iblock/48b/520_860_1/97927f75_37dd_11e8_80f0_000c29ae1566_1f986d20_ca99_11eb_814e_0050568ef5e6.jpg",
-      "rating": 3
+      "rating": 4
     },
     {
       "id": "5hjb",
