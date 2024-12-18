@@ -15,7 +15,7 @@
         <p>BookShelf</p>
       </a>
       <p class="text-gray-600 dark:text-gray-400 text-sm text-center md:text-left">
-        Explore a world of books and stories. Created with love for book enthusiasts.
+        Відкрийте для себе світ книг та історій. Створено з любов'ю для книголюбів.
       </p>
     </div>
     <div class="flex items-center space-x-4 md:mr-12">

@@ -47,11 +47,11 @@ export default {
         <button
             v-if="!authStore.isLoggedIn"
             class="btn_reg"
-            @click="navigateLog">Sign in</button>
+            @click="navigateLog">Увійти</button>
         <button
             v-else
             class="btn_out"
-            @click="authStore.logout">LogOut</button>
+            @click="authStore.logout">Вийти</button>
       </div>
     </div>
   </header>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@vee-validate/i18n": "^4.14.7",
     "@vee-validate/rules": "^4.14.7",
     "axios": "^1.7.9",

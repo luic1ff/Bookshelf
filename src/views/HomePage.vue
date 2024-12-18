@@ -6,21 +6,21 @@
             v-model="searchQuery"
             type="text"
             class="w-56 dark:bg-[#212124] border dark:border-none dark:text-white outline-none  rounded-md py-2 pl-10 pr-4"
-            placeholder="Search books...">
+            placeholder="Search...">
         <i class="ri-search-line absolute left-3 top-2 "></i>
 
       </div>
       <button class="btn_reg" @click="$router.push('/create')">
-        New Book
+        Додати книгу
       </button>
     </div>
 
     <div class="text-5xl font-bold bg-gradient-to-br from-[#7287fd] to-[#314AD5] text-transparent bg-clip-text mb-20">
-      <h1>List of books</h1>
+      <h1>Перелік книг</h1>
     </div>
 
     <div v-if="isLoading" class="text-center">
-      <p>Загрузка...</p>
+      <p>Завантаження...</p>
     </div>
 
     <div v-auto-animate="{ duration: 300 }" v-else-if="cards.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -36,12 +36,12 @@
             :to="{ name: 'BookDetails', params: { id: card.id } }">
           <img
               :src="card.image"
-              alt="Изображение карточки"
+              alt="Зображення книги"
               class="w-full h-60 object-cover rounded-md mb-4">
         </router-link>
-        <h3 class="text-lg text-center font-bold mb-2">{{ card.title }}</h3>
-        <p class="text-gray-700 dark:text-gray-500 mb-2">{{card.author}}</p>
-        <p class="text-gray-700 dark:text-gray-500 mb-2">{{ card.description }}</p>
+        <h3 class="text-lg text-center font-bold mb-2 line-clamp-1">{{ card.title }}</h3>
+        <p class="text-gray-700 dark:text-gray-500 mb-2 line-clamp-1">{{card.author}}</p>
+        <p class="text-gray-700 dark:text-gray-500 mb-2 line-clamp-1">{{ card.description }}</p>
         <div class="flex items-center justify-center space-x-1 mb-4">
           <i
               v-for="star in 5"
@@ -69,7 +69,7 @@
     </div>
 
     <div v-else class="flex flex-col justify-center items-center">
-      <h1 class="font-semibold text-2xl mt-24 h-full w-full text-center">Нет карточек для отображения</h1>
+      <h1 class="font-semibold text-2xl mt-24 h-full w-full text-center">Немає книг для відображення</h1>
       <i class="ri-emotion-sad-line text-8xl mt-4 text-green-400"></i>
     </div>
   </div>
