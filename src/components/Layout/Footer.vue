@@ -22,11 +22,11 @@
       <a href="https://github.com/luic1ff/Bookshelf" class="hover:text-[#7287fd] duration-300">
         <i class="ri-github-fill text-2xl"></i>
       </a>
-      <a href="https://twitter.com" class="hover:text-[#7287fd] duration-300">
-        <i class="ri-twitter-fill text-2xl"></i>
+      <a href="https://t.me/luiciff9" class="hover:text-[#7287fd] duration-300">
+        <i class="ri-telegram-2-fill text-2xl"></i>
       </a>
-      <a href="https://facebook.com" class="hover:text-[#7287fd] duration-300">
-        <i class="ri-facebook-fill text-2xl"></i>
+      <a href="https://discordapp.com/users/649257622352035841/" class="hover:text-[#7287fd] duration-300">
+        <i class="ri-discord-fill text-2xl"></i>
       </a>
     </div>
   </footer>
