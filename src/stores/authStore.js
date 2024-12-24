@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { useRouter } from "vue-router"; // Импорт роутера
+import { useRouter } from "vue-router";
 
 export const useAuthStore = defineStore("auth", {
     state: () => ({
@@ -18,16 +18,16 @@ export const useAuthStore = defineStore("auth", {
                     this.user = response.data[0];
                     this.isLoggedIn = true;
 
-                    // Сохраняем пользователя в localStorage
+                    // Зберігаємо користувача в localStorage
                     localStorage.setItem("user", JSON.stringify(this.user));
 
                     const router = useRouter();
                     router.push("/");
                 } else {
-                    alert("Неверный email или пароль.");
+                    alert("Невірний email або пароль.");
                 }
             } catch (error) {
-                console.error("Ошибка входа:", error);
+                console.error("Помилка входу:", error);
             }
         },
 
@@ -38,29 +38,25 @@ export const useAuthStore = defineStore("auth", {
                 });
 
                 if (existingUser.data.length > 0) {
-                    alert("Пользователь с таким email уже существует.");
+                    alert("Користувач з таким email вже існує.");
                     return;
                 }
 
-                // Регистрация нового пользователя
                 const newUser = {name, email, password };
                 const response = await axios.post(`http://localhost:3000/users`, newUser);
                 this.user = response.data;
                 this.isLoggedIn = true;
 
-                // Сохраняем нового пользователя в localStorage
                 localStorage.setItem("user", JSON.stringify(this.user));
 
-                // Перенаправляем на главную страницу
                 const router = useRouter();
                 router.push("/");
             } catch (error) {
-                console.error("Ошибка регистрации:", error);
+                console.error("Помилка реєстрації:", error);
             }
         },
 
         logout() {
-            // Удаляем данные пользователя из localStorage
             localStorage.removeItem("user");
 
             this.user = null;
