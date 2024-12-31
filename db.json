@@ -70,7 +70,8 @@
 			"year": "1951",
 			"description": "Історія про самотність, бунт та пошук сенсу життя через очі підлітка.",
 			"image": "https://m.media-amazon.com/images/I/8125BDk3l9L._SL1500_.jpg",
-			"rating": 4
+			"rating": 4,
+			"userEmail": "test5@example.com"
 		},
 		{
 			"id": "9",
