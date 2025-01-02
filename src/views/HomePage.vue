@@ -70,7 +70,7 @@
 
     <div v-else class="flex flex-col justify-center items-center">
       <h1 class="font-semibold text-2xl mt-24 h-full w-full text-center">Немає книг для відображення</h1>
-      <i class="ri-emotion-sad-line text-8xl mt-4 text-green-400"></i>
+      <i class="ri-emotion-sad-line text-8xl mt-4 mb-40 text-green-400"></i>
     </div>
   </div>
 </template>

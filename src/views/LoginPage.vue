@@ -7,7 +7,7 @@
           <Field
               id="email"
               name="email"
-              placeholder="Email"
+              placeholder="Електронна пошта"
               type="email"
               class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
               rules="required|email"
@@ -19,7 +19,7 @@
           <Field
               id="password"
               name="password"
-              placeholder="Password"
+              placeholder="Пароль"
               type="password"
               class="w-full dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
               rules="required|min:6"

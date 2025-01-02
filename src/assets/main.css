@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply overflow-x-hidden bg-white dark:bg-[#1a1a1d] dark:text-white font-inter;
+    @apply overflow-x-hidden bg-white dark:bg-[#1a1a1d] dark:text-white mt-20 font-inter;
 }
 
 
