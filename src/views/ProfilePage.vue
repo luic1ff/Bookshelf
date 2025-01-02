@@ -2,45 +2,46 @@
   <div class="p-6 max-w-6xl mx-auto">
     <div class="flex justify-between items-center mb-8">
       <div>
-        <h1 class="text-5xl font-bold bg-gradient-to-br from-[#7287fd] to-[#314AD5] text-transparent bg-clip-text mb-4">
+        <h1 class="text-3xl font-bold bg-gradient-to-br from-[#7287fd] to-[#314AD5] text-transparent bg-clip-text mb-8">
           Профіль користувача
         </h1>
         <p class="text-gray-700 dark:text-gray-300" v-if="user">
           Ласкаво просимо, <span class="font-semibold">{{ user.name }}</span>!
         </p>
-      </div>
-      <div>
-        <button
-            v-if="user"
-            @click="logout"
-            class="hover:bg-gradient-to-br from-[#d20f39] to-red-500 dark:bg-[#2a2a2d] bg-[#d20f39] text-white  py-2 px-4 rounded-md transition duration-300"
-        >
-          Вийти
-        </button>
-        <router-link
-            v-else
-            to="/login"
-            class="hover:bg-gradient-to-br from-[#4CF191] to-[#09D45E] dark:bg-[#2a2a2d] bg-[#09D45E] text-white size-12 py-2 px-4 rounded-md transition duration-300"
-        >
-          Увійти
-        </router-link>
+        <p class="text-gray-700 dark:text-gray-300" v-else>Немає профілю,
+          <button
+					class="btn_reg ml-1 mr-2"
+					@click="loginRoute"
+				>
+					Увійти
+				</button>
+            <span>або</span>
+            <button
+					class="btn_reg ml-1 mr-2"
+					@click="regRoute"
+				>
+					
+          Зареєструватися
+				</button>
+        </p>
       </div>
     </div>
 
     <div v-if="userCards.length > 0" class="mt-10">
-      <div class="flex justify-between items-center mb-6">
+      <div v-if="user" class="flex justify-between items-center mb-6">
         <h2 class="text-3xl font-semibold">Мої книги</h2>
         <div class="relative">
           <input
               v-model="searchQuery"
               type="text"
               class="w-56 dark:bg-[#212124] border dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
-              placeholder="Пошук книг..."
+              placeholder="Search..."
           />
           <i class="ri-search-line absolute left-3 top-2"></i>
         </div>
       </div>
       <div
+          v-if="user"
           v-auto-animate="{ duration: 300 }"
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6"
       >
@@ -118,6 +119,14 @@ export default {
 
     const user = computed(() => authStore.user);
 
+    function loginRoute() {
+			router.push('/login')
+		}
+
+    function regRoute() {
+			router.push('/register')
+		}
+
     onMounted(() => {
       cardsStore.fetchCards();
     });
@@ -140,6 +149,8 @@ export default {
       userCards,
       logout,
       deleteCard,
+      loginRoute,
+      regRoute
     };
   },
   computed: {
