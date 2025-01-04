@@ -11,15 +11,15 @@ export default {
   setup() {
     const router = useRouter();
     const authStore = useAuthStore();
-    const profileTab = ref(false); // Булево состояние (открыто/закрыто)
-    const profileRef = ref(null); // Ссылка на окно профиля
+    const profileTab = ref(false);
+    const profileRef = ref(null);
 
     const navigateLog = () => {
       router.push('/login');
     };
 
     const toggleProfileOption = (event) => {
-      event.stopPropagation(); // Остановить всплытие
+      event.stopPropagation();
       profileTab.value = !profileTab.value;
     };
 
@@ -71,7 +71,7 @@ export default {
     <div
         class="flex h-20 w-full bg-white dark:bg-[#1a1a1d] border-b border-gray-100 dark:border-[#212124] justify-between items-center px-12"
     >
-      <a href="/" class="flex items-center space-x-4 font-lily text-xl">
+      <router-link to="/" class="flex items-center space-x-4 font-lily text-xl">
         <div class="relative">
           <img src="/logo.svg" alt="logo_image" class="w-10" />
           <img
@@ -81,7 +81,7 @@ export default {
           />
         </div>
         <p>BookShelf</p>
-      </a>
+      </router-link>
       <div class="flex h-full items-center space-x-4 md:space-x-8">
         <div>
           <ThemeToggle />
@@ -110,33 +110,55 @@ export default {
           </button>
         </div>
 
-        <!-- Окно профиля -->
-        <div
-            v-if="profileTab"
-            ref="profileRef"
-            class="absolute top-20 right-10 p-4 bg-gray-100 dark:bg-[#212124] rounded-md shadow-lg z-50"
-        >
-          <div class="flex flex-col space-y-3">
-            <button
-                @click="profileRoute"
-                class="px-3 py-2 bg-gray-200 dark:bg-[#2a2a2d] rounded-md hover:scale-[105%] duration-300"
-            >
-              <i class="ri-user-line text-xl pr-1"></i>
-              <span>Сторінка профілю</span>
-            </button>
-            <button
-                @click="logout"
-                class="px-3 py-2 bg-gray-200 dark:bg-[#2a2a2d] rounded-md hover:scale-[105%] duration-300"
-            >
-              <i class="ri-logout-circle-r-line text-xl pr-1"></i>
-              <span>Вийти</span>
-            </button>
+        <transition name="fade-scale">
+          <div
+              v-if="profileTab"
+              ref="profileRef"
+              class="absolute top-20 right-10 p-4 bg-gray-100 dark:bg-[#212124] rounded-md shadow-lg z-50 transition-transform transform scale-95 opacity-0 duration-300"
+              :class="{'scale-100 opacity-100': profileTab, 'scale-95 opacity-0': !profileTab}"
+          >
+            <div class="flex flex-col space-y-3">
+              <button
+                  @click="profileRoute"
+                  class="px-3 py-2 bg-gray-200 dark:bg-[#2a2a2d] rounded-md hover:scale-105 transition-transform duration-300"
+              >
+                <i class="ri-user-line text-xl pr-1"></i>
+                <span>Сторінка профілю</span>
+              </button>
+              <button
+                  @click="logout"
+                  class="px-3 py-2 bg-gray-200 dark:bg-[#2a2a2d] rounded-md hover:scale-105 transition-transform duration-300"
+              >
+                <i class="ri-logout-circle-r-line text-xl pr-1"></i>
+                <span>Вийти</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </transition>
       </div>
     </div>
   </header>
 </template>
 
-
-
+<style scoped>
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.fade-scale-enter-from {
+  transform: scale(0.95);
+  opacity: 0;
+}
+.fade-scale-enter-to {
+  transform: scale(1);
+  opacity: 1;
+}
+.fade-scale-leave-from {
+  transform: scale(1);
+  opacity: 1;
+}
+.fade-scale-leave-to {
+  transform: scale(0.95);
+  opacity: 0;
+}
+</style>

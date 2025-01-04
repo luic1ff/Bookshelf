@@ -5,7 +5,7 @@
         <input
             v-model="searchQuery"
             type="text"
-            class="w-56 dark:bg-[#212124] border dark:border-none dark:text-white outline-none  rounded-md py-2 pl-10 pr-4"
+            class="w-56 dark:bg-[#212124] border border-gray-300 dark:border-none dark:text-white outline-none  rounded-md py-2 pl-10 pr-4"
             placeholder="Search...">
         <i class="ri-search-line absolute left-3 top-2 "></i>
 
@@ -27,7 +27,7 @@
       <div
           v-for="card in filteredTasks"
           :key="card.id"
-          class="relative dark:bg-[#212124]  bg-gray-100 rounded-lg transition duration-300 hover:shadow-xl hover:scale-[103%] p-5 cursor-pointer"
+          class="relative dark:bg-[#212124] dark:border-none  bg-white border border-gray-300 rounded-lg transition duration-300 hover:shadow-xl hover:scale-[103%] p-5 cursor-pointer"
       >
         <div class="absolute -top-3 -right-3 size-16 bg-gray-200 dark:bg-[#2a2a2d] font-semibold rounded-full grid place-items-center">
           <span>{{card.year}}</span>
