@@ -69,7 +69,7 @@ export default {
 <template>
   <header class="fixed top-0 w-full z-50">
     <div
-        class="flex h-20 w-full bg-white dark:bg-[#1a1a1d] border-b border-gray-100 dark:border-[#212124] justify-between items-center px-12"
+        class="flex h-20 w-full bg-white dark:bg-[#1a1a1d] border-b border-gray-300 dark:border-[#212124] justify-between items-center px-12"
     >
       <router-link to="/" class="flex items-center space-x-4 font-lily text-xl">
         <div class="relative">
@@ -80,7 +80,7 @@ export default {
               class="absolute -top-5 -right-3 rotate-20"
           />
         </div>
-        <p>BookShelf</p>
+        <p class="bg-gradient-to-br from-[#7287fd] to-[#314AD5] text-transparent bg-clip-text dark:text-white">BookShelf</p>
       </router-link>
       <div class="flex h-full items-center space-x-4 md:space-x-8">
         <div>
@@ -103,7 +103,7 @@ export default {
           </button>
           <button
               v-else
-              class="py-2 px-3 bg-gray-300 dark:bg-[#212124] hover:-translate-y-0.5 duration-300 active:opacity-50 rounded-md"
+              class="py-2 px-3 bg-gray-200 dark:bg-[#212124] hover:-translate-y-0.5 duration-300 active:opacity-50 rounded-md"
               @click.stop="toggleProfileOption"
           >
             <i class="ri-menu-line text-xl"></i>
@@ -143,7 +143,7 @@ export default {
 <style scoped>
 .fade-scale-enter-active,
 .fade-scale-leave-active {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 .fade-scale-enter-from {
   transform: scale(0.95);

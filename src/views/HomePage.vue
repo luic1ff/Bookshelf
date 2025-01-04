@@ -24,48 +24,12 @@
     </div>
 
     <div v-auto-animate="{ duration: 300 }" v-else-if="cards.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-      <div
+      <BookCard
           v-for="card in filteredTasks"
           :key="card.id"
-          class="relative dark:bg-[#212124] dark:border-none  bg-white border border-gray-300 rounded-lg transition duration-300 hover:shadow-xl hover:scale-[103%] p-5 cursor-pointer"
-      >
-        <div class="absolute -top-3 -right-3 size-16 bg-gray-200 dark:bg-[#2a2a2d] font-semibold rounded-full grid place-items-center">
-          <span>{{card.year}}</span>
-        </div>
-        <router-link
-            :to="{ name: 'BookDetails', params: { id: card.id } }">
-          <img
-              :src="card.image"
-              alt="Зображення книги"
-              class="w-full h-60 object-cover rounded-md mb-4">
-        </router-link>
-        <h3 class="text-lg text-center font-bold mb-2 line-clamp-1">{{ card.title }}</h3>
-        <p class="text-gray-700 dark:text-gray-500 mb-2 line-clamp-1">{{card.author}}</p>
-        <p class="text-gray-700 dark:text-gray-500 mb-2 line-clamp-1">{{ card.description }}</p>
-        <div class="flex items-center justify-center space-x-1 mb-4">
-          <i
-              v-for="star in 5"
-              :key="star"
-              :class="star <= card.rating ? 'ri-star-fill text-yellow-500' : 'ri-star-line text-gray-400'"
-              class="text-xl"
-          ></i>
-        </div>
-        <div class="flex space-x-2">
-          <button
-              @click.stop="deleteCard(card.id)"
-              class="hover:bg-gradient-to-br from-[#d20f39] to-red-500 dark:bg-[#2a2a2d] bg-[#d20f39] text-white size-12 py-1 px-3 rounded-md  transition duration-300 w-full"
-          >
-            <i class="ri-close-large-line"></i>
-          </button>
-          <router-link
-              :to="{ name: 'EditCard', params: { id: card.id } }"
-              @click.stop
-              class="hover:bg-gradient-to-br from-[#4CF191] to-[#09D45E] dark:bg-[#2a2a2d] bg-[#09D45E] text-white size-12 py-1 px-3 rounded-md transition duration-300 w-full flex items-center justify-center"
-          >
-            <i class="ri-edit-line"></i>
-          </router-link>
-        </div>
-      </div>
+          :book="card"
+          @delete-card="deleteCard"
+      />
     </div>
 
     <div v-else class="flex flex-col justify-center items-center">
@@ -76,6 +40,7 @@
 </template>
 
 <script>
+import BookCard from "@/components/BookCard.vue";
 import { useCardsStore } from "@/stores/cardsStore";
 import { onMounted, computed } from "vue";
 
@@ -112,6 +77,9 @@ export default {
           )
       );
     },
-  }
+  },
+  components: {
+    BookCard,
+  },
 };
 </script>
