@@ -38,9 +38,9 @@
           <div class="mt-6">
             <button
                 @click="goBack"
-                class="flex items-center space-x-2 text-blue-500 hover:text-blue-700 transition">
+                class="flex items-center justify-center w-full  btn_reg">
               <i class="ri-arrow-left-line text-2xl"></i>
-              <span>Назад</span>
+              <span class="pr-4 font-semibold">Назад</span>
             </button>
           </div>
         </div>

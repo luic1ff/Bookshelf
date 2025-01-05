@@ -103,7 +103,7 @@ export default {
           </button>
           <button
               v-else
-              class="py-2 px-3 bg-gray-200 dark:bg-[#212124] hover:-translate-y-0.5 duration-300 active:opacity-50 rounded-md"
+              class="py-2 px-3 bg-white border border-gray-100 dark:border-none dark:bg-[#212124] hover:-translate-y-0.5 hover:bg-gray-100 duration-300 active:opacity-50 rounded-md"
               @click.stop="toggleProfileOption"
           >
             <i class="ri-menu-line text-xl"></i>

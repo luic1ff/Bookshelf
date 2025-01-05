@@ -1,8 +1,8 @@
 <template>
   <div
-      class="relative dark:bg-[#212124] dark:border-none bg-white border border-gray-300 rounded-lg transition-all duration-300 hover:shadow-xl hover:scale-[103%] ease-in-out p-5 cursor-pointer"
+      class="bookcard relative dark:bg-[#212124] dark:border-none bg-white border border-gray-100 rounded-lg transition-all transform hover:rotate-[3deg] hover:scale-95  duration-300 hover:shadow-xl ease-in-out p-5 cursor-pointer"
   >
-    <div class="absolute -top-3 -right-3 size-16 bg-gray-200 dark:bg-[#2a2a2d] font-semibold rounded-full grid place-items-center">
+    <div class="absolute -top-3 -right-3 size-16 bg-gray-100 dark:bg-[#2a2a2d] shadow-md font-semibold rounded-full grid place-items-center">
       <span>{{ book.year }}</span>
     </div>
     <router-link :to="{ name: 'BookDetails', params: { id: book.id } }">
@@ -32,14 +32,14 @@
     <div class="flex space-x-2">
       <button
           @click.stop="$emit('delete-card', book.id)"
-          class="hover:text-white dark:bg-[#2a2a2d] hover:bg-[#d20f39] dark:hover:bg-[#d20f39] bg-gray-200  size-12 py-1 px-3 rounded-md duration-300 w-full"
+          class="hover:text-white dark:bg-[#2a2a2d] hover:bg-[#d20f39] dark:hover:bg-[#d20f39] bg-gray-100 shadow-md size-12 py-1 px-3 rounded-md duration-300 w-full"
       >
         <i class="ri-close-large-line"></i>
       </button>
       <router-link
           :to="{ name: 'EditCard', params: { id: book.id } }"
           @click.stop
-          class="hover:text-white dark:bg-[#2a2a2d] hover:bg-[#09D45E] dark:hover:bg-[#09D45E] bg-gray-200  size-12 py-1 px-3 rounded-md duration-300 w-full flex items-center justify-center"
+          class="hover:text-white dark:bg-[#2a2a2d] hover:bg-[#09D45E] dark:hover:bg-[#09D45E] bg-gray-100 shadow-md size-12 py-1 px-3 rounded-md duration-300 w-full flex items-center justify-center"
       >
         <i class="ri-edit-line"></i>
       </router-link>
@@ -57,3 +57,4 @@ export default {
   },
 };
 </script>
+
