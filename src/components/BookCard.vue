@@ -1,6 +1,6 @@
 <template>
   <div
-      class="bookcard relative dark:bg-[#212124] dark:border-none bg-white border border-gray-100 rounded-lg transition-all transform hover:rotate-[3deg] hover:scale-95  duration-300 hover:shadow-xl ease-in-out p-5 cursor-pointer"
+      class="bookcard relative dark:bg-[#212124] dark:border-none bg-white border border-gray-200 rounded-lg transition-all transform hover:rotate-[3deg] hover:scale-95  duration-300 hover:shadow-xl ease-in-out p-5 cursor-pointer"
   >
     <div class="absolute -top-3 -right-3 size-16 bg-gray-100 dark:bg-[#2a2a2d] shadow-md font-semibold rounded-full grid place-items-center">
       <span>{{ book.year }}</span>
