@@ -33,6 +33,7 @@
           :key="card.id"
           :book="card"
           @delete-card="deleteCard"
+          @toggle-read-status="toggleReadStatus"
       />
     </div>
 

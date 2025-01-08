@@ -20,7 +20,7 @@
 					class="btn_reg ml-1 mr-2"
 					@click="regRoute"
 				>
-					
+
           Зареєструватися
 				</button>
         </p>
