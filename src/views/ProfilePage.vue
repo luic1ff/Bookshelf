@@ -50,6 +50,7 @@
             :key="card.id"
             :book="card"
             @delete-card="deleteCard"
+            @toggle-read-status="handleToggleReadStatus"
         />
       </div>
     </div>
@@ -82,9 +83,14 @@ export default {
   setup() {
     const authStore = useAuthStore();
     const cardsStore = useCardsStore();
+    const { toggleReadStatus } = cardsStore;
     const router = useRouter();
 
     const user = computed(() => authStore.user);
+
+    const handleToggleReadStatus = (book) => {
+      toggleReadStatus(book);
+    };
 
     function loginRoute() {
 			router.push('/login')
@@ -117,7 +123,8 @@ export default {
       logout,
       deleteCard,
       loginRoute,
-      regRoute
+      regRoute,
+      handleToggleReadStatus
     };
   },
   computed: {

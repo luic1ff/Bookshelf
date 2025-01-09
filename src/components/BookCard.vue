@@ -1,6 +1,6 @@
 <template>
   <div
-      class="bookcard relative dark:bg-[#212124] dark:border-none bg-white border border-gray-200 rounded-lg transition-all transform hover:rotate-[3deg] hover:scale-95 duration-300 hover:shadow-xl ease-in-out p-5 cursor-pointer"
+      class="relative dark:bg-[#212124] dark:border-none bg-white border border-gray-200 rounded-lg transition-all transform hover:scale-[105%] duration-300 hover:shadow-xl ease-in-out p-5 cursor-pointer"
   >
     <!-- Year Badge -->
     <div class="absolute -top-3 -right-3 size-16 bg-gray-100 dark:bg-[#2a2a2d] shadow-md font-semibold rounded-full grid place-items-center">
@@ -61,32 +61,53 @@
     <!-- Mark as Read -->
     <div class="flex items-center justify-between">
       <span
-          :class="book.isRead ? 'text-green-500 font-bold' : 'text-gray-500'"
+          :class="isRead ? 'text-green-500 font-bold' : 'text-gray-500'"
       >
-        {{ book.isRead ? 'Прочитано' : 'Не прочитано' }}
+        {{ isRead ? 'Прочитано' : 'Не прочитано' }}
       </span>
       <button
           @click.stop="toggleReadStatus"
           class="text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md duration-300"
       >
-        {{ book.isRead ? 'Скасувати' : 'Прочитати' }}
+        {{ isRead ? 'Скасувати' : 'Прочитати' }}
       </button>
     </div>
   </div>
 </template>
 
 <script>
-export default {
+import { defineComponent, computed } from "vue";
+import { useAuthStore } from "@/stores/authStore";
+
+export default defineComponent({
   props: {
     book: {
       type: Object,
       required: true,
     },
   },
-  methods: {
-    toggleReadStatus() {
-      this.$emit('toggle-read-status', this.book.id);
-    },
+  setup(props, { emit }) {
+    const authStore = useAuthStore();
+
+    // Получение email текущего пользователя
+    const userEmail = computed(() => authStore.user?.email || "");
+
+    // Проверка, прочитана ли книга
+    const isRead = computed(() =>
+        props.book.isReadBy && Array.isArray(props.book.isReadBy)
+            ? props.book.isReadBy.includes(userEmail.value)
+            : false
+    );
+
+    // Переключение статуса прочитанности
+    const toggleReadStatus = () => {
+      emit("toggle-read-status", props.book);
+    };
+
+    return {
+      isRead,
+      toggleReadStatus,
+    };
   },
-};
+});
 </script>

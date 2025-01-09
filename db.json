@@ -1,215 +1,230 @@
 {
-	"cards": [
-		{
-			"id": "1",
-			"title": "Dad, I Want to Hear Your Story",
-			"author": "Jeffrey Mason",
-			"year": "2019",
-			"description": "Класичний роман, який досліджує питання расизму і моральності через призму дитячого погляду у маленькому південному містечку США.",
-			"image": "https://m.media-amazon.com/images/I/51+ROKEYviL._SL1499_.jpg",
-			"rating": 5
-		},
-		{
-			"id": "2",
-			"title": "1984",
-			"author": "George Orwell",
-			"year": "1949",
-			"description": "Антиутопічний роман про тоталітарний режим, контроль думок та боротьбу за свободу.",
-			"image": "https://m.media-amazon.com/images/I/71kxa1-0mfL._AC_UF1000,1000_QL80_.jpg",
-			"rating": 4
-		},
-		{
-			"id": "3",
-			"title": "Pride and Prejudice",
-			"author": "Jane Austen",
-			"year": "1813",
-			"description": "Класичний роман про кохання, соціальні стереотипи та боротьбу за самоповагу в Англії XVIII століття.",
-			"image": "https://m.media-amazon.com/images/I/81wgcld4wxL.jpg",
-			"rating": 5
-		},
-		{
-			"id": "4",
-			"title": "The Great Gatsby",
-			"author": "F. Scott Fitzgerald",
-			"year": "1925",
-			"description": "Роман про кохання, втрату ілюзій та розкіш життя в епоху джазу.",
-			"image": "https://m.media-amazon.com/images/I/71rNJQ2g-EL._AC_UY218_.jpg",
-			"rating": 4
-		},
-		{
-			"id": "5",
-			"title": "Moby Dick",
-			"author": "Herman Melville",
-			"year": "1851",
-			"description": "Епічна історія про одержимість капітана Ахаба китом на ім'я Мобі Дік.",
-			"image": "https://m.media-amazon.com/images/I/610qaD5PskL._SL1437_.jpg",
-			"rating": 4
-		},
-		{
-			"id": "6",
-			"title": "War and Peace",
-			"author": "Leo Tolstoy",
-			"year": "1869",
-			"description": "Епопея, яка охоплює події наполеонівських війн через долі аристократичних сімей.",
-			"image": "https://m.media-amazon.com/images/I/81a4kCNuH+L.jpg",
-			"rating": 5
-		},
-		{
-			"id": "7",
-			"title": "Crime and Punishment",
-			"author": "Fyodor Dostoevsky",
-			"year": "1866",
-			"description": "Роман про боротьбу совісті та моралі через історію злочину та його наслідків.",
-			"image": "https://m.media-amazon.com/images/I/61twuus+DSL._SL1499_.jpg",
-			"rating": 4
-		},
-		{
-			"id": "8",
-			"title": "The Catcher in the Rye",
-			"author": "J.D. Salinger",
-			"year": "1951",
-			"description": "Історія про самотність, бунт та пошук сенсу життя через очі підлітка.",
-			"image": "https://m.media-amazon.com/images/I/8125BDk3l9L._SL1500_.jpg",
-			"rating": 4,
-			"userEmail": "test5@example.com"
-		},
-		{
-			"id": "9",
-			"title": "Brave New World",
-			"author": "Aldous Huxley",
-			"year": "1932",
-			"description": "Антиутопія про технологічний контроль суспільства та втрату індивідуальності.",
-			"image": "https://m.media-amazon.com/images/I/91D4YvdC0dL._SL1500_.jpg",
-			"rating": 5,
-			"userEmail": "test5@example.com"
-		},
-		{
-			"id": "10",
-			"title": "Jane Eyre",
-			"author": "Charlotte Bronte",
-			"year": "1847",
-			"description": "Історія про силу характеру та пошук незалежності молодої жінки в Англії XIX століття.",
-			"image": "https://m.media-amazon.com/images/I/91zU70Aw9IS._SL1500_.jpg",
-			"rating": 5
-		},
-		{
-			"id": "11",
-			"title": "The Hobbit",
-			"author": "J.R.R. Tolkien",
-			"year": "1937",
-			"description": "Фентезійна пригода про Більбо Беггінса, який вирушає на небезпечну подорож.",
-			"image": "https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg",
-			"rating": 5
-		},
-		{
-			"id": "12",
-			"title": "The Alchemist",
-			"author": "Paulo Coelho",
-			"year": "1988",
-			"description": "Духовна притча про мандрівку до самореалізації та здійснення мрій.",
-			"image": "https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg",
-			"rating": 4
-		},
-		{
-			"id": "13",
-			"title": "Harry Potter and the Sorcerer's Stone",
-			"author": "J.K. Rowling",
-			"year": "1997",
-			"description": "Перша книга про пригоди Гаррі Поттера у школі магії Гоґвортс.",
-			"image": "https://m.media-amazon.com/images/I/81YOuOGFCJL.jpg",
-			"rating": 5
-		},
-		{
-			"id": "14",
-			"title": "The Road",
-			"author": "Cormac McCarthy",
-			"year": "2006",
-			"description": "Постапокаліптичний роман про виживання батька та сина.",
-			"image": "https://m.media-amazon.com/images/I/51M7XGLQTBL._SL1200_.jpg",
-			"rating": 4
-		},
-		{
-			"id": "15",
-			"title": "Frankenstein",
-			"author": "Mary Shelley",
-			"year": "1818",
-			"description": "Класична готична історія про науку, життя та відповідальність.",
-			"image": "https://m.media-amazon.com/images/I/717FNfor2ML._SL1500_.jpg",
-			"rating": 4
-		}
-	],
-	"users": [
-		{
-			"id": "9a10",
-			"name": "@@@",
-			"email": "test@example.com",
-			"password": "@@@@@"
-		},
-		{
-			"id": "ae36",
-			"name": "\"",
-			"email": "test3@example.com",
-			"password": "\""
-		},
-		{
-			"id": "ff47",
-			"name": "\"carts:{}",
-			"email": "tes2t@example.com",
-			"password": "123456"
-		},
-		{
-			"id": "a270",
-			"name": "Dmytro",
-			"email": "test1@example.com",
-			"password": "123456"
-		},
-		{
-			"id": "838d",
-			"name": "Filya",
-			"email": "test5@example.com",
-			"password": "123456"
-		},
-		{
-			"id": "4a4d",
-			"name": "1212312",
-			"email": "3123132@gmail.com",
-			"password": "aoa-doasd"
-		},
-		{
-			"id": "0c0b",
-			"name": "123132123",
-			"email": "123123123@gmail",
-			"password": "231123123123"
-		},
-		{
-			"id": "ff95",
-			"name": "eqweq",
-			"email": "dimewe@gmail.com",
-			"password": "Dedqeqw"
-		},
-		{
-			"id": "6685",
-			"name": "3123213",
-			"email": "test@уц",
-			"password": "123456"
-		},
-		{
-			"id": "916d",
-			"name": "eqw",
-			"email": "das@gmail.com",
-			"password": "!@@@r23aww"
-		},
-		{
-			"id": "678d",
-			"name": "3123123",
-			"email": "test4@example.com",
-			"password": "123456"
-		},
-		{
-			"id": "14a1",
-			"name": "вфывфыв",
-			"email": "test8@example.com",
-			"password": "123456"
-		}
-	]
+  "cards": [
+    {
+      "id": "1",
+      "title": "Dad, I Want to Hear Your Story",
+      "author": "Jeffrey Mason",
+      "year": "2019",
+      "description": "Класичний роман, який досліджує питання расизму і моральності через призму дитячого погляду у маленькому південному містечку США.",
+      "image": "https://m.media-amazon.com/images/I/51+ROKEYviL._SL1499_.jpg",
+      "rating": 5,
+      "isReadBy": []
+    },
+    {
+      "id": "2",
+      "title": "1984",
+      "author": "George Orwell",
+      "year": "1949",
+      "description": "Антиутопічний роман про тоталітарний режим, контроль думок та боротьбу за свободу.",
+      "image": "https://m.media-amazon.com/images/I/71kxa1-0mfL._AC_UF1000,1000_QL80_.jpg",
+      "rating": 4,
+      "isReadBy": []
+    },
+    {
+      "id": "3",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "year": "1813",
+      "description": "Класичний роман про кохання, соціальні стереотипи та боротьбу за самоповагу в Англії XVIII століття.",
+      "image": "https://m.media-amazon.com/images/I/81wgcld4wxL.jpg",
+      "rating": 5,
+      "isReadBy": []
+    },
+    {
+      "id": "4",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "year": "1925",
+      "description": "Роман про кохання, втрату ілюзій та розкіш життя в епоху джазу.",
+      "image": "https://m.media-amazon.com/images/I/71rNJQ2g-EL._AC_UY218_.jpg",
+      "rating": 4,
+      "isReadBy": []
+    },
+    {
+      "id": "5",
+      "title": "Moby Dick",
+      "author": "Herman Melville",
+      "year": "1851",
+      "description": "Епічна історія про одержимість капітана Ахаба китом на ім'я Мобі Дік.",
+      "image": "https://m.media-amazon.com/images/I/610qaD5PskL._SL1437_.jpg",
+      "rating": 4,
+      "isReadBy": []
+    },
+    {
+      "id": "6",
+      "title": "War and Peace",
+      "author": "Leo Tolstoy",
+      "year": "1869",
+      "description": "Епопея, яка охоплює події наполеонівських війн через долі аристократичних сімей.",
+      "image": "https://m.media-amazon.com/images/I/81a4kCNuH+L.jpg",
+      "rating": 5,
+      "isReadBy": []
+    },
+    {
+      "id": "7",
+      "title": "Crime and Punishment",
+      "author": "Fyodor Dostoevsky",
+      "year": "1866",
+      "description": "Роман про боротьбу совісті та моралі через історію злочину та його наслідків.",
+      "image": "https://m.media-amazon.com/images/I/61twuus+DSL._SL1499_.jpg",
+      "rating": 4,
+      "isReadBy": []
+    },
+    {
+      "id": "8",
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "year": "1951",
+      "description": "Історія про самотність, бунт та пошук сенсу життя через очі підлітка.",
+      "image": "https://m.media-amazon.com/images/I/8125BDk3l9L._SL1500_.jpg",
+      "rating": 4,
+      "userEmail": "test5@example.com",
+      "isReadBy": []
+    },
+    {
+      "id": "9",
+      "title": "Brave New World",
+      "author": "Aldous Huxley",
+      "year": "1932",
+      "description": "Антиутопія про технологічний контроль суспільства та втрату індивідуальності.",
+      "image": "https://m.media-amazon.com/images/I/91D4YvdC0dL._SL1500_.jpg",
+      "rating": 5,
+      "userEmail": "test5@example.com",
+      "isReadBy": []
+    },
+    {
+      "id": "10",
+      "title": "Jane Eyre",
+      "author": "Charlotte Bronte",
+      "year": "1847",
+      "description": "Історія про силу характеру та пошук незалежності молодої жінки в Англії XIX століття.",
+      "image": "https://m.media-amazon.com/images/I/91zU70Aw9IS._SL1500_.jpg",
+      "rating": 5,
+      "isReadBy": []
+    },
+    {
+      "id": "11",
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "year": "1937",
+      "description": "Фентезійна пригода про Більбо Беггінса, який вирушає на небезпечну подорож.",
+      "image": "https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg",
+      "rating": 5,
+      "isReadBy": []
+    },
+    {
+      "id": "12",
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "year": "1988",
+      "description": "Духовна притча про мандрівку до самореалізації та здійснення мрій.",
+      "image": "https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg",
+      "rating": 4,
+      "isReadBy": []
+    },
+    {
+      "id": "13",
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "year": "1997",
+      "description": "Перша книга про пригоди Гаррі Поттера у школі магії Гоґвортс.",
+      "image": "https://m.media-amazon.com/images/I/81YOuOGFCJL.jpg",
+      "rating": 5,
+      "isReadBy": []
+    },
+    {
+      "id": "14",
+      "title": "The Road",
+      "author": "Cormac McCarthy",
+      "year": "2006",
+      "description": "Постапокаліптичний роман про виживання батька та сина.",
+      "image": "https://m.media-amazon.com/images/I/51M7XGLQTBL._SL1200_.jpg",
+      "rating": 4,
+      "isReadBy": []
+    },
+    {
+      "id": "15",
+      "title": "Frankenstein",
+      "author": "Mary Shelley",
+      "year": "1818",
+      "description": "Класична готична історія про науку, життя та відповідальність.",
+      "image": "https://m.media-amazon.com/images/I/717FNfor2ML._SL1500_.jpg",
+      "rating": 4,
+      "isReadBy": []
+    }
+  ],
+  "users": [
+    {
+      "id": "9a10",
+      "name": "@@@",
+      "email": "test@example.com",
+      "password": "@@@@@"
+    },
+    {
+      "id": "ae36",
+      "name": "\"",
+      "email": "test3@example.com",
+      "password": "\""
+    },
+    {
+      "id": "ff47",
+      "name": "\"carts:{}",
+      "email": "tes2t@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "a270",
+      "name": "Dmytro",
+      "email": "test1@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "838d",
+      "name": "Filya",
+      "email": "test5@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "4a4d",
+      "name": "1212312",
+      "email": "3123132@gmail.com",
+      "password": "aoa-doasd"
+    },
+    {
+      "id": "0c0b",
+      "name": "123132123",
+      "email": "123123123@gmail",
+      "password": "231123123123"
+    },
+    {
+      "id": "ff95",
+      "name": "eqweq",
+      "email": "dimewe@gmail.com",
+      "password": "Dedqeqw"
+    },
+    {
+      "id": "6685",
+      "name": "3123213",
+      "email": "test@уц",
+      "password": "123456"
+    },
+    {
+      "id": "916d",
+      "name": "eqw",
+      "email": "das@gmail.com",
+      "password": "!@@@r23aww"
+    },
+    {
+      "id": "678d",
+      "name": "3123123",
+      "email": "test4@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "14a1",
+      "name": "вфывфыв",
+      "email": "test8@example.com",
+      "password": "123456"
+    }
+  ]
 }

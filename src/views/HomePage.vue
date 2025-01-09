@@ -33,7 +33,7 @@
           :key="card.id"
           :book="card"
           @delete-card="deleteCard"
-          @toggle-read-status="toggleReadStatus"
+          @toggle-read-status="handleToggleReadStatus"
       />
     </div>
 
@@ -57,25 +57,26 @@
   </div>
 </template>
 
-
 <script>
-import BookCard from "@/components/BookCard.vue";
-import { useCardsStore } from "@/stores/cardsStore";
-import { onMounted, computed } from "vue";
+import BookCard from '@/components/BookCard.vue';
+import { useCardsStore } from '@/stores/cardsStore';
+import { onMounted, computed } from 'vue';
 
 export default {
-
-  data(){
+  data() {
     return {
-      searchQuery: "",
-
-    }
+      searchQuery: '',
+    };
   },
   setup() {
     const cardsStore = useCardsStore();
-    const {fetchCards, deleteCard} = cardsStore;
+    const { fetchCards, deleteCard, toggleReadStatus } = cardsStore;
     const cards = computed(() => cardsStore.cards);
     const isLoading = computed(() => cardsStore.isLoading);
+
+    const handleToggleReadStatus = (book) => {
+      toggleReadStatus(book);
+    };
 
     onMounted(() => {
       fetchCards();
@@ -85,13 +86,14 @@ export default {
       cards,
       isLoading,
       deleteCard,
+      handleToggleReadStatus,
     };
   },
   computed: {
     filteredTasks() {
       const query = this.searchQuery.toLowerCase();
       return this.cards.filter((task) =>
-          ['title', 'author', 'year'].some(key =>
+          ['title', 'author', 'year'].some((key) =>
               task[key]?.toString().toLowerCase().includes(query)
           )
       );

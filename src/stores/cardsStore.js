@@ -53,6 +53,36 @@ export const useCardsStore = defineStore('cards', {
 				errorStore.setError('Помилка при додаванні картки: ' + error.message)
 			}
 		},
+		async toggleReadStatus(book) {
+			const errorStore = useErrorStore();
+			try {
+				const authStore = useAuthStore();
+				const userEmail = authStore.user?.email;
+				if (!userEmail) {
+					errorStore.setError('Ви не авторизовані для цієї дії.');
+					return;
+				}
+
+				const isReadBy = [...book.isReadBy];
+				if (isReadBy.includes(userEmail)) {
+					book.isReadBy = isReadBy.filter(email => email !== userEmail);
+				} else {
+					book.isReadBy.push(userEmail);
+				}
+
+				this.cards = this.cards.map(card =>
+					card.id === book.id ? { ...card, isReadBy: book.isReadBy } : card
+				);
+
+				await axios.patch(`http://localhost:3000/cards/${book.id}`, {
+					isReadBy: book.isReadBy,
+
+				});
+			} catch (error) {
+
+				errorStore.setError('Помилка при оновленні статусу прочитано: ' + error.message);
+			}
+		},
 
 		async fetchCardById(id) {
 			const errorStore = useErrorStore()
