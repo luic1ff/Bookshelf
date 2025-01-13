@@ -9,27 +9,18 @@
           Ласкаво просимо, <span class="font-semibold">{{ user.name }}</span>!
         </p>
         <p class="text-gray-700 dark:text-gray-300" v-else>Немає профілю,
-          <button
-					class="btn_reg ml-1 mr-2"
-					@click="loginRoute"
-				>
-					Увійти
-				</button>
-            <span>або</span>
-            <button
-					class="btn_reg ml-1 mr-2"
-					@click="regRoute"
-				>
-
-          Зареєструватися
-				</button>
+          <button class="btn_reg ml-1 mr-2" @click="loginRoute">Увійти</button>
+          <span>або</span>
+          <button class="btn_reg ml-1 mr-2" @click="regRoute">Зареєструватися</button>
         </p>
       </div>
     </div>
 
-    <div v-if="userCards.length > 0" class="mt-10">
+    <div v-if="filteredCards.length > 0" class="mt-10">
       <div v-if="user" class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-semibold">Мої книги</h2>
+        <h2 class="text-3xl font-semibold">
+          {{ showReadBooks ? "Прочитані книги" : "Всі книги" }}
+        </h2>
         <div class="relative">
           <input
               v-model="searchQuery"
@@ -40,6 +31,22 @@
           <i class="ri-search-line absolute left-3 top-2"></i>
         </div>
       </div>
+
+      <div class="mb-6">
+        <button
+            :class="{'bg-blue-500': !showReadBooks, 'bg-gray-300': showReadBooks}"
+            @click="showReadBooks = false"
+            class="py-2 px-4 rounded-md text-white">
+          Всі книги
+        </button>
+        <button
+            :class="{'bg-blue-500': showReadBooks, 'bg-gray-300': !showReadBooks}"
+            @click="showReadBooks = true"
+            class="py-2 px-4 ml-4 rounded-md text-white">
+          Прочитані книги
+        </button>
+      </div>
+
       <div
           v-if="user"
           v-auto-animate="{ duration: 300 }"
@@ -55,61 +62,66 @@
       </div>
     </div>
 
-    <div v-else-if="user" class="flex flex-col justify-center items-center mt-24">
-      <h1 class="font-semibold text-2xl text-center">У вас ще немає доданих книг.</h1>
+    <div v-else class="flex flex-col justify-center items-center mt-24">
+      <h1 class="font-semibold text-2xl text-center">Книг немає.</h1>
       <i class="ri-emotion-sad-line text-8xl mt-4 mb-10 text-green-400"></i>
-    </div>
-
-    <div v-else class="text-center text-xl mt-24">
-      <p>Ви не авторизовані.</p>
-      <router-link to="/login" class="text-blue-500 underline">Увійти</router-link>
     </div>
   </div>
 </template>
 
 <script>
 import BookCard from "@/components/BookCard.vue";
-import { useAuthStore } from '@/stores/authStore';
-import { useCardsStore } from '@/stores/cardsStore';
-import { computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useAuthStore } from "@/stores/authStore";
+import { useCardsStore } from "@/stores/cardsStore";
+import { computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   data() {
     return {
-      searchQuery: '',
+      searchQuery: "",
+      showReadBooks: false,
     };
   },
   setup() {
     const authStore = useAuthStore();
     const cardsStore = useCardsStore();
-    const { toggleReadStatus } = cardsStore;
     const router = useRouter();
 
     const user = computed(() => authStore.user);
 
     const handleToggleReadStatus = (book) => {
-      toggleReadStatus(book);
+      cardsStore.toggleReadStatus(book);
     };
 
     function loginRoute() {
-			router.push('/login')
-		}
+      router.push("/login");
+    }
 
     function regRoute() {
-			router.push('/register')
-		}
+      router.push("/register");
+    }
 
     onMounted(() => {
       cardsStore.fetchCards();
     });
 
     const userCards = computed(() => {
-      return cardsStore.cards.filter(card => card.userEmail === user.value?.email);
+      const userEmail = user.value?.email;
+      if (!userEmail) return [];
+      return cardsStore.cards.filter((card) => card.userEmail === userEmail);
+    });
+
+    const readBook = computed(() => {
+      const userEmail = user.value?.email;
+      if (!userEmail) return [];
+      return cardsStore.cards.filter(
+          (card) => Array.isArray(card.isReadBy) && card.isReadBy.includes(userEmail)
+      );
     });
 
     const logout = () => {
-      router.push('/');
+      router.push("/");
       authStore.logout();
     };
 
@@ -124,14 +136,17 @@ export default {
       deleteCard,
       loginRoute,
       regRoute,
-      handleToggleReadStatus
+      handleToggleReadStatus,
+      readBook,
     };
   },
   computed: {
     filteredCards() {
       const query = this.searchQuery.toLowerCase();
-      return this.userCards.filter(card =>
-          ['title', 'author', 'year'].some(key =>
+      const cards = this.showReadBooks ? this.readBook : this.userCards;
+
+      return cards.filter((card) =>
+          ["title", "author", "year"].some((key) =>
               card[key]?.toString().toLowerCase().includes(query)
           )
       );
@@ -139,6 +154,6 @@ export default {
   },
   components: {
     BookCard,
-  }
+  },
 };
 </script>

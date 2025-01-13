@@ -35,7 +35,7 @@ import Footer from '@/components/Layout/Footer.vue'
 import Header from '@/components/Layout/Header.vue'
 import ScrollUp from '@/components/Layout/ScrollUp.vue'
 import { useErrorStore } from '@/stores/errorStore'
-import { ref, watch } from 'vue'
+import { computed ,ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 export default {
@@ -55,10 +55,11 @@ export default {
       )
     }
 
-    // Следим за изменением маршрута и обновляем видимость футера
     watch(() => router.currentRoute.value.path, updateFooterVisibility, {
       immediate: true,
     })
+
+    const errorMessage = computed(() => errorStore.errorMessage);
 
     const clearError = () => {
       errorStore.clearError()
@@ -67,7 +68,7 @@ export default {
     return {
       showFooter,
       clearError,
-      errorMessage: errorStore.errorMessage,
+      errorMessage,
     }
   },
   components: {

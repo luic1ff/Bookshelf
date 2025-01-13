@@ -8,7 +8,9 @@
       "description": "Класичний роман, який досліджує питання расизму і моральності через призму дитячого погляду у маленькому південному містечку США.",
       "image": "https://m.media-amazon.com/images/I/51+ROKEYviL._SL1499_.jpg",
       "rating": 5,
-      "isReadBy": []
+      "isReadBy": [
+        "test5@example.com"
+      ]
     },
     {
       "id": "2",
@@ -18,7 +20,9 @@
       "description": "Антиутопічний роман про тоталітарний режим, контроль думок та боротьбу за свободу.",
       "image": "https://m.media-amazon.com/images/I/71kxa1-0mfL._AC_UF1000,1000_QL80_.jpg",
       "rating": 4,
-      "isReadBy": []
+      "isReadBy": [
+        "test5@example.com"
+      ]
     },
     {
       "id": "3",
@@ -28,7 +32,9 @@
       "description": "Класичний роман про кохання, соціальні стереотипи та боротьбу за самоповагу в Англії XVIII століття.",
       "image": "https://m.media-amazon.com/images/I/81wgcld4wxL.jpg",
       "rating": 5,
-      "isReadBy": []
+      "isReadBy": [
+        "test5@example.com"
+      ]
     },
     {
       "id": "4",
@@ -225,6 +231,12 @@
       "name": "вфывфыв",
       "email": "test8@example.com",
       "password": "123456"
+    },
+    {
+      "id": "930d",
+      "name": "213123",
+      "email": "213123@das.com",
+      "password": "123123"
     }
   ]
 }
