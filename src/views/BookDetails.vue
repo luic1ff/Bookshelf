@@ -40,7 +40,7 @@
                 @click="goBack"
                 class="flex items-center justify-center w-full  btn_reg">
               <i class="ri-arrow-left-line text-2xl"></i>
-              <span class="pr-4 font-semibold">Назад</span>
+              <span class="pr-4 font-semibold">На головну</span>
             </button>
           </div>
         </div>

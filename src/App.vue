@@ -43,8 +43,7 @@ export default {
     const router = useRouter()
     const errorStore = useErrorStore()
     const showFooter = ref(true)
-
-    // Обновляем видимость футера на основе текущего маршрута
+    
     const updateFooterVisibility = () => {
       const currentPath = router.currentRoute.value.path
       showFooter.value = !(
