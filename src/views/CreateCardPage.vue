@@ -127,6 +127,7 @@ export default {
 				image: '',
 				rating: 0,
 				userEmail: '',
+        isReadBy: [],
 			},
 			error: null,
 		}

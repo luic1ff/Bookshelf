@@ -1,6 +1,6 @@
 <template>
   <button
-      class="fixed z-50 right-4 size-16 bg-gray-200 dark:bg-[#2a2a2d] rounded-md transition-all duration-300 hover:-translate-y-2 ease-in-out -bottom-1/2"
+      class="fixed z-50 right-4 size-16 bg-white border border-gray-200 dark:bg-[#2a2a2d] rounded-md transition-all duration-300 hover:-translate-y-2 ease-in-out -bottom-1/2"
       @click="scrollToTop"
       :class="{ 'bottom-4': showScrollUp, '-bottom-1/2': !showScrollUp }"
   >
