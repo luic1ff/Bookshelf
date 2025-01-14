@@ -16,39 +16,38 @@
       </div>
     </div>
 
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-3xl font-semibold" v-if="user">
+        {{ showReadBooks ? "Прочитані книги" : "Додані книги" }}
+      </h2>
+      <div class="relative">
+        <input
+            v-model="searchQuery"
+            type="text"
+            class="w-56 dark:bg-[#212124] border border-gray-300 dark:border-none dark:text-white focus:ring-2 focus:ring-blue-700 outline-none rounded-md py-2 pl-10 pr-4"
+            placeholder="Search..."
+        />
+        <i class="ri-search-line absolute left-3 top-2"></i>
+      </div>
+    </div>
+
+    <div class="mb-6 flex justify-center">
+      <button
+          :class="{'bg-gray-100 dark:bg-[#2a2a2d]': !showReadBooks, 'bg-white': showReadBooks}"
+          @click="showReadBooks = false"
+          class="px-6 py-3 font-medium text-gray-900  border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-[#212124] dark:border-[#2a2a2d] dark:text-white dark:hover:text-white dark:hover:bg-[#2a2a2d] dark:focus:ring-blue-600 dark:focus:text-white">
+        Додані книги
+      </button>
+      <button
+          :class="{'bg-gray-100 dark:bg-[#2a2a2d]': showReadBooks, 'bg-white': !showReadBooks}"
+          @click="showReadBooks = true"
+          class="px-4 py-3 font-medium text-gray-900  border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-[#212124] dark:border-[#2a2a2d] dark:text-white dark:hover:text-white dark:hover:bg-[#2a2a2d] dark:focus:ring-blue-600 dark:focus:text-white">
+        Прочитані книги
+      </button>
+    </div>
+
     <div v-if="filteredCards.length > 0" class="mt-10">
-      <div v-if="user" class="flex justify-between items-center mb-6">
-        <h2 class="text-3xl font-semibold">
-          {{ showReadBooks ? "Прочитані книги" : "Всі книги" }}
-        </h2>
-        <div class="relative">
-          <input
-              v-model="searchQuery"
-              type="text"
-              class="w-56 dark:bg-[#212124] border border-gray-300 dark:border-none dark:text-white outline-none rounded-md py-2 pl-10 pr-4"
-              placeholder="Search..."
-          />
-          <i class="ri-search-line absolute left-3 top-2"></i>
-        </div>
-      </div>
-
-      <div class="mb-6">
-        <button
-            :class="{'bg-blue-500': !showReadBooks, 'bg-gray-300': showReadBooks}"
-            @click="showReadBooks = false"
-            class="py-2 px-4 rounded-md text-white">
-          Всі книги
-        </button>
-        <button
-            :class="{'bg-blue-500': showReadBooks, 'bg-gray-300': !showReadBooks}"
-            @click="showReadBooks = true"
-            class="py-2 px-4 ml-4 rounded-md text-white">
-          Прочитані книги
-        </button>
-      </div>
-
       <div
-          v-if="user"
           v-auto-animate="{ duration: 300 }"
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6"
       >

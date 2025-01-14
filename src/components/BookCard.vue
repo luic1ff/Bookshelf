@@ -42,7 +42,7 @@
     </div>
 
     <!-- Actions -->
-    <div class="flex space-x-2 mb-4">
+    <div v-if="isOwner" class="flex space-x-2 mb-4">
       <button
           @click.stop="$emit('delete-card', book.id)"
           class="hover:text-white dark:bg-[#2a2a2d] hover:bg-[#d20f39] dark:hover:bg-[#d20f39] bg-gray-100 shadow-md size-12 py-1 px-3 rounded-md duration-300 w-full"
@@ -59,15 +59,18 @@
     </div>
 
     <!-- Mark as Read -->
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between"
+         :class="isOwner ? '' : 'pt-16'">
       <span
-          :class="isRead ? 'text-green-500 font-bold' : 'text-gray-500'"
+          class="bg-[#f3f4f6] dark:bg-[#2a2a2d] px-3 py-2 rounded-md shadow-md"
+          :class="isRead ? 'text-green-500' : 'text-gray-500'"
       >
-        {{ isRead ? 'Прочитано' : 'Не прочитано' }}
+        <i class="text-2xl" :class="isRead ? 'ri-book-marked-line' : 'ri-book-line'"></i>
       </span>
       <button
           @click.stop="toggleReadStatus"
-          class="text-sm bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md duration-300"
+          class="bg-[#f3f4f6] dark:bg-[#2a2a2d] p-3 rounded-md shadow-md duration-300 font-medium hover:text-white"
+          :class="isRead ? 'hover:bg-[#d20f39] dark:hover:bg-[#d20f39]' : 'hover:bg-[#09d45e] dark:hover:bg-[#09d45e]'"
       >
         {{ isRead ? 'Скасувати' : 'Прочитати' }}
       </button>
@@ -99,6 +102,9 @@ export default defineComponent({
             : false
     );
 
+    // Проверка, является ли пользователь владельцем книги
+    const isOwner = computed(() => props.book.userEmail === userEmail.value);
+
     // Переключение статуса прочитанности
     const toggleReadStatus = () => {
       emit("toggle-read-status", props.book);
@@ -106,6 +112,7 @@ export default defineComponent({
 
     return {
       isRead,
+      isOwner,
       toggleReadStatus,
     };
   },
