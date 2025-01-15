@@ -4,7 +4,7 @@
       <p class="text-gray-700 dark:text-gray-300">Завантаження...</p>
     </div>
 
-    <div v-else-if="book" class="dark:bg-[#212124] bg-gray-100 rounded-lg shadow-md">
+    <div v-else-if="book" class="dark:bg-[#212124] dark:border-none bg-white border border-gray-300 rounded-lg shadow-md">
       <div class="flex flex-col lg:flex-row">
         <!-- Зображення книги -->
         <div class="lg:w-1/2 p-4">
@@ -38,7 +38,7 @@
           <div class="mt-6">
             <button
                 @click="goBack"
-                class="flex items-center justify-center w-full  btn_reg">
+                class="flex items-center justify-center rounded-md shadow-md w-full py-2 bg-[#f3f4f6] dark:bg-[#2a2a2d] hover:bg-opacity-80  duration-300">
               <i class="ri-arrow-left-line text-2xl"></i>
               <span class="pr-4 font-semibold">На головну</span>
             </button>

@@ -44,7 +44,9 @@
       "description": "Роман про кохання, втрату ілюзій та розкіш життя в епоху джазу.",
       "image": "https://m.media-amazon.com/images/I/71rNJQ2g-EL._AC_UY218_.jpg",
       "rating": 4,
-      "isReadBy": []
+      "isReadBy": [
+        "test5@example.com"
+      ]
     },
     {
       "id": "5",
