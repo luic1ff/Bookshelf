@@ -102,10 +102,10 @@ export default defineComponent({
             : false
     );
 
-    // Проверка, является ли пользователь владельцем книги
+
     const isOwner = computed(() => props.book.userEmail === userEmail.value);
 
-    // Переключение статуса прочитанности
+
     const toggleReadStatus = () => {
       emit("toggle-read-status", props.book);
     };
