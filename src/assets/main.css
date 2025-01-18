@@ -22,3 +22,10 @@ body {
 .btn_out {
     @apply px-3 py-2 bg-gradient-to-br from-[#d20f39] to-red-500 font-semibold hover:-translate-y-1 transition duration-300 text-white rounded-md ;
 }
+
+input[type="checkbox"]:checked {
+    @apply text-blue-600 bg-gray-100 border-gray-300 rounded-md focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500;
+}
+input[type="checkbox"]{
+    @apply rounded-xl bg-gray-200 border-gray-300;
+}
