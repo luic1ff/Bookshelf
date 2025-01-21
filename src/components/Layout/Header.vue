@@ -114,8 +114,8 @@ export default {
           <div
               v-if="profileTab"
               ref="profileRef"
-              class="absolute top-20 right-10 p-4 bg-gray-100 dark:bg-[#212124] rounded-md shadow-lg z-50 transition-transform transform scale-95 opacity-0 duration-300"
-              :class="{'scale-100 opacity-100': profileTab, 'scale-95 opacity-0': !profileTab}"
+              class="absolute top-20 right-10 p-4 bg-gray-100 dark:bg-[#212124] rounded-md shadow-lg z-50 transition-transform transform opacity-0 duration-300"
+              :class="{'opacity-100': profileTab, 'opacity-0': !profileTab}"
           >
             <div class="flex flex-col space-y-3">
               <button
@@ -139,26 +139,3 @@ export default {
     </div>
   </header>
 </template>
-
-<style scoped>
-.fade-scale-enter-active,
-.fade-scale-leave-active {
-  transition: all 0.1s ease-in-out;
-}
-.fade-scale-enter-from {
-  transform: scale(0.95);
-  opacity: 0;
-}
-.fade-scale-enter-to {
-  transform: scale(1);
-  opacity: 1;
-}
-.fade-scale-leave-from {
-  transform: scale(1);
-  opacity: 1;
-}
-.fade-scale-leave-to {
-  transform: scale(0.95);
-  opacity: 0;
-}
-</style>
