@@ -53,6 +53,7 @@ export const useCardsStore = defineStore('cards', {
 				errorStore.setError('Помилка при додаванні картки: ' + error.message)
 			}
 		},
+
 		async toggleReadStatus(book) {
 			const errorStore = useErrorStore();
 			try {

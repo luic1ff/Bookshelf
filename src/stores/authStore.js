@@ -53,7 +53,7 @@ export const useAuthStore = defineStore('auth', {
 				errorStore.setError('Помилка реєстрації:'+ error.message)
 			}
 		},
-
+		
 		logout() {
 			localStorage.removeItem('user')
 
