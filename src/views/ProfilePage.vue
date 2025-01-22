@@ -14,34 +14,38 @@
           <button class="btn_reg ml-1 mr-2" @click="regRoute">Зареєструватися</button>
         </p>
       </div>
-    </div>
-
-    <div class="flex justify-between items-center mb-6">
       <h2 class="text-3xl font-semibold" v-if="user">
         {{ showReadBooks ? "Прочитані книги" : "Додані книги" }}
       </h2>
-      <div class="relative">
-        <input
-            v-model="searchQuery"
-            type="text"
-            class="w-56 dark:bg-[#212124] border border-gray-300 dark:border-none dark:text-white focus:ring-2 focus:ring-blue-700 outline-none rounded-md py-2 pl-10 pr-4"
-            placeholder="Search..."
-        />
-        <i class="ri-search-line absolute left-3 top-2"></i>
-      </div>
+    </div>
+
+
+    <div class="flex justify-between items-center mb-6">
+
+      <Filter
+          :showFilters="showFilters"
+          :filters="filters"
+          :filterLabels="filterLabels"
+          @toggle-filters="toggleFilters"
+          @update:filters="updateFilters"
+      />
+      <Search
+          :searchQuery="searchQuery"
+          @update:searchQuery="updateSearchQuery"
+      />
     </div>
 
     <div class="mb-6 flex justify-center">
       <button
           :class="{'bg-gray-100 dark:bg-[#2a2a2d]': !showReadBooks, 'bg-white': showReadBooks}"
           @click="showReadBooks = false"
-          class="px-6 py-3 font-medium text-gray-900  border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-[#212124] dark:border-[#2a2a2d] dark:text-white dark:hover:text-white dark:hover:bg-[#2a2a2d] dark:focus:ring-blue-600 dark:focus:text-white">
+          class="px-6 py-3 font-medium text-gray-900 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-[#212124] dark:border-[#2a2a2d] dark:text-white dark:hover:text-white dark:hover:bg-[#2a2a2d] dark:focus:ring-blue-600 dark:focus:text-white">
         Додані книги
       </button>
       <button
           :class="{'bg-gray-100 dark:bg-[#2a2a2d]': showReadBooks, 'bg-white': !showReadBooks}"
           @click="showReadBooks = true"
-          class="px-4 py-3 font-medium text-gray-900  border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-[#212124] dark:border-[#2a2a2d] dark:text-white dark:hover:text-white dark:hover:bg-[#2a2a2d] dark:focus:ring-blue-600 dark:focus:text-white">
+          class="px-4 py-3 font-medium text-gray-900 border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 dark:bg-[#212124] dark:border-[#2a2a2d] dark:text-white dark:hover:text-white dark:hover:bg-[#2a2a2d] dark:focus:ring-blue-600 dark:focus:text-white">
         Прочитані книги
       </button>
     </div>
@@ -69,19 +73,16 @@
 </template>
 
 <script>
-import BookCard from "@/components/BookCard.vue";
+import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/authStore";
 import { useCardsStore } from "@/stores/cardsStore";
-import { computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import BookCard from "@/components/BookCard.vue";
+import Filter from "@/components/Layout/Filter.vue";
+import Search from "@/components/Layout/Search.vue";
 
 export default {
-  data() {
-    return {
-      searchQuery: "",
-      showReadBooks: false,
-    };
-  },
+  components: { BookCard, Filter, Search },
   setup() {
     const authStore = useAuthStore();
     const cardsStore = useCardsStore();
@@ -89,21 +90,28 @@ export default {
 
     const user = computed(() => authStore.user);
 
-    const handleToggleReadStatus = (book) => {
-      cardsStore.toggleReadStatus(book);
-    };
-
-    function loginRoute() {
-      router.push("/login");
-    }
-
-    function regRoute() {
-      router.push("/register");
-    }
-
-    onMounted(() => {
-      cardsStore.fetchCards();
+    const searchQuery = ref("");
+    const filters = ref({
+      oldBooks: false,
+      newBooks: false,
+      popularBooks: false,
+      goodBooks: false,
+      threeStarBooks: false,
+      twoStarBooks: false,
+      oneStarBooks: false,
     });
+    const showFilters = ref(false);
+    const showReadBooks = ref(false);
+
+    const filterLabels = {
+      oldBooks: "Старі книги",
+      newBooks: "Нові книги",
+      popularBooks: "5 зірок",
+      goodBooks: "4 зірки",
+      threeStarBooks: "3 зірки",
+      twoStarBooks: "2 зірки",
+      oneStarBooks: "1 зірка",
+    };
 
     const userCards = computed(() => {
       const userEmail = user.value?.email;
@@ -111,48 +119,78 @@ export default {
       return cardsStore.cards.filter((card) => card.userEmail === userEmail);
     });
 
-    const readBook = computed(() => {
+    const readBooks = computed(() => {
       const userEmail = user.value?.email;
       if (!userEmail) return [];
-      return cardsStore.cards.filter(
-          (card) => Array.isArray(card.isReadBy) && card.isReadBy.includes(userEmail)
-      );
+      return cardsStore.cards.filter((card) => card.isReadBy?.includes(userEmail));
     });
 
-    const logout = () => {
-      router.push("/");
-      authStore.logout();
-    };
+    const filteredCards = computed(() => {
+      const cards = showReadBooks.value ? readBooks.value : userCards.value;
+      const query = searchQuery.value.toLowerCase();
+      const {
+        oldBooks,
+        newBooks,
+        popularBooks,
+        goodBooks,
+        threeStarBooks,
+        twoStarBooks,
+        oneStarBooks,
+      } = filters.value;
 
-    const deleteCard = (id) => {
-      cardsStore.deleteCard(id);
-    };
+      return cards.filter((card) => {
+        const matchesSearch = ["title", "author", "year"].some((key) =>
+            card[key]?.toString().toLowerCase().includes(query)
+        );
+
+        const isOldBook = oldBooks && parseInt(card.year) < 2000;
+        const isNewBook = newBooks && parseInt(card.year) >= 2000;
+        const matchesYear = !oldBooks && !newBooks ? true : isOldBook || isNewBook;
+
+        const matchesRating =
+            (popularBooks && card.rating === 5) ||
+            (goodBooks && card.rating === 4) ||
+            (threeStarBooks && card.rating === 3) ||
+            (twoStarBooks && card.rating === 2) ||
+            (oneStarBooks && card.rating === 1) ||
+            (!popularBooks &&
+                !goodBooks &&
+                !threeStarBooks &&
+                !twoStarBooks &&
+                !oneStarBooks);
+
+        return matchesSearch && matchesYear && matchesRating;
+      });
+    });
+
+    const loginRoute = () => router.push("/login");
+    const regRoute = () => router.push("/register");
+    const toggleFilters = () => (showFilters.value = !showFilters.value);
+    const updateFilters = (newFilters) => (filters.value = newFilters);
+    const updateSearchQuery = (newQuery) => (searchQuery.value = newQuery);
+    const handleToggleReadStatus = (book) => cardsStore.toggleReadStatus(book);
+    const deleteCard = (id) => cardsStore.deleteCard(id);
+
+    onMounted(() => cardsStore.fetchCards());
 
     return {
       user,
+      searchQuery,
+      filters,
+      showFilters,
+      showReadBooks,
+      filterLabels,
+      filteredCards,
       userCards,
-      logout,
-      deleteCard,
+      readBooks,
       loginRoute,
       regRoute,
+      toggleFilters,
+      updateFilters,
+      updateSearchQuery,
       handleToggleReadStatus,
-      readBook,
+      deleteCard,
     };
-  },
-  computed: {
-    filteredCards() {
-      const query = this.searchQuery.toLowerCase();
-      const cards = this.showReadBooks ? this.readBook : this.userCards;
-
-      return cards.filter((card) =>
-          ["title", "author", "year"].some((key) =>
-              card[key]?.toString().toLowerCase().includes(query)
-          )
-      );
-    },
-  },
-  components: {
-    BookCard,
   },
 };
 </script>
