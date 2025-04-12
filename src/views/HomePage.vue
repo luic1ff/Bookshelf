@@ -1,27 +1,33 @@
 <template>
   <div class="p-6 max-w-6xl mx-auto">
-    <div class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-6 mb-8">
+    <div
+      class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-6 mb-8"
+    >
       <!-- Фильтры -->
       <Filter
-          :showFilters="showFilters"
-          :filters="filters"
-          :filterLabels="filterLabels"
-          @toggle-filters="toggleFilters"
-          @update:filters="(newFilters) => (filters = newFilters)"
+        :showFilters="showFilters"
+        :filters="filters"
+        :filterLabels="filterLabels"
+        @toggle-filters="toggleFilters"
+        @update:filters="(newFilters) => (filters = newFilters)"
       />
 
       <!-- Поиск и добавление книг -->
       <div class="flex space-x-6 items-center">
         <Search
-            :searchQuery="searchQuery"
-            @update:searchQuery="(newQuery) => (searchQuery = newQuery)"
+          :searchQuery="searchQuery"
+          @update:searchQuery="(newQuery) => (searchQuery = newQuery)"
         />
-        <button class="btn_reg" @click="$router.push('/create')">Додати книгу</button>
+        <button class="btn_reg" @click="$router.push('/create')">
+          Додати книгу
+        </button>
       </div>
     </div>
 
     <!-- Заголовок -->
-    <div class="text-5xl font-bold bg-gradient-to-br from-[#7287fd] to-[#314AD5] text-transparent bg-clip-text mb-20">
+    <div
+      class="text-5xl font-bold bg-gradient-to-br from-[#7287fd] to-[#314AD5] text-transparent bg-clip-text mb-20"
+    >
       <h1>Перелік книг</h1>
     </div>
 
@@ -32,25 +38,31 @@
 
     <!-- Отображение книг -->
     <div
-        v-auto-animate="{ duration: 300 }"
-        v-else-if="filteredTasks.length > 0"
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6"
+      v-auto-animate="{ duration: 300 }"
+      v-else-if="filteredTasks.length > 0"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6"
     >
       <BookCard
-          v-for="card in filteredTasks"
-          :key="card.id"
-          :book="card"
-          @delete-card="deleteCard"
-          @toggle-read-status="handleToggleReadStatus"
+        v-for="card in filteredTasks"
+        :key="card.id"
+        :book="card"
+        @delete-card="deleteCard"
+        @toggle-read-status="handleToggleReadStatus"
       />
     </div>
 
     <!-- Нет данных -->
     <div v-else class="flex flex-col justify-center items-center">
-      <h1 class="font-semibold text-2xl mt-24 h-full w-full text-center">Немає книг для відображення</h1>
+      <h1 class="font-semibold text-2xl mt-24 h-full w-full text-center">
+        Немає книг для відображення
+      </h1>
       <i class="ri-emotion-sad-line text-8xl mt-4 text-green-400"></i>
-      <p class="text-gray-400 mt-4">Якщо книги не знайдено, додайте її до каталогу.</p>
-      <button class="btn_reg mt-6 mb-40" @click="$router.push('/create')">Додати книгу</button>
+      <p class="text-gray-400 mt-4">
+        Якщо книги не знайдено, додайте її до каталогу.
+      </p>
+      <button class="btn_reg mt-6 mb-40" @click="$router.push('/create')">
+        Додати книгу
+      </button>
     </div>
   </div>
 </template>
@@ -114,27 +126,27 @@ export default {
       return cards.value.filter((task) => {
         // Поиск
         const matchesSearch = ["title", "author", "year"].some((key) =>
-            task[key]?.toString().toLowerCase().includes(query)
+          task[key]?.toString().toLowerCase().includes(query)
         );
 
         // Год выпуска
         const isOldBook = oldBooks && parseInt(task.year) < 2000;
         const isNewBook = newBooks && parseInt(task.year) >= 2000;
         const matchesYear =
-            !oldBooks && !newBooks ? true : isOldBook || isNewBook;
+          !oldBooks && !newBooks ? true : isOldBook || isNewBook;
 
         // Рейтинг
         const matchesRating =
-            (popularBooks && task.rating === 5) ||
-            (goodBooks && task.rating === 4) ||
-            (threeStarBooks && task.rating === 3) ||
-            (twoStarBooks && task.rating === 2) ||
-            (oneStarBooks && task.rating === 1) ||
-            (!popularBooks &&
-                !goodBooks &&
-                !threeStarBooks &&
-                !twoStarBooks &&
-                !oneStarBooks);
+          (popularBooks && task.rating === 5) ||
+          (goodBooks && task.rating === 4) ||
+          (threeStarBooks && task.rating === 3) ||
+          (twoStarBooks && task.rating === 2) ||
+          (oneStarBooks && task.rating === 1) ||
+          (!popularBooks &&
+            !goodBooks &&
+            !threeStarBooks &&
+            !twoStarBooks &&
+            !oneStarBooks);
 
         return matchesSearch && matchesYear && matchesRating;
       });
